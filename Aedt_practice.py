@@ -33,42 +33,41 @@ print(oEditor)
 
 # Define variables and expressions in a dictionary
 variables = {
-    "RotorInnerRadius": "16.6mm",
-    "RotorCenterThickness": "8mm",
-    "RotorOuterRadius": "25mm",
-    "RadialPMThickness": "2mm",
-    "RadialPMAngle": "38deg",
-    "RotorPMAxialThickness": "2mm",
-    "RotorPMAxialOuterRadius": "25mm-RadialPMThickness",
-    "RotorIronOuterRadius": "25mm",
-    "RotorIronThickness": "1.5mm",
-    "StatorYokeWidth": "8mm",
-    "StatorInnerRadius": "27mm",
-    "StatorAxialThickness": "8mm",
-    "StatorOuterRadius": "56mm",
-    "StatorPoleLength": "8.5mm",
-    "StatorPoleWidth": "8mm",
-    "StatorPMOuterRadius": "29.5mm",
-    "StatorPMThickness": "2mm",
-    "StatorIronThickness": "1.5mm",
-    "StatorIronOuterRadius": "29mm",
-    "RotorPMInnerRadius": "RotorPMAxialOuterRadius-3mm",
-    "RotorIronInnerRadius": "RotorPMInnerRadius+0.5mm",
-    "WindingThickness": "3.2mm",
-    "WindingRadialLength": "13.3mm",
-    "rpm": "3000",
+    "RotorInnerRadius": "16.6mm",#
+    "RotorCenterThickness": "8mm",#
+    "RotorOuterRadius": "25mm",#
+    "RadialPMThickness": "2mm",#
+    "RadialPMAngle": "38deg",#
+    "RotorPMAxialThickness": "2mm",#
+    "RotorPMAxialOuterRadius": "25mm-RadialPMThickness",#
+    "RotorIronOuterRadius": "25mm",#
+    "RotorIronThickness": "1.5mm",#
+    "StatorYokeWidth": "8mm",#
+    "StatorInnerRadius": "27mm",#
+    "StatorAxialThickness": "8mm",#
+    "StatorOuterRadius": "56mm",#
+    "StatorPoleWidth": "8mm",#
+    "StatorPMOuterRadius": "29.5mm",#
+    "StatorPMThickness": "2mm",#
+    "StatorIronThickness": "1.5mm",#
+    "StatorIronOuterRadius": "29mm",#
+    "RotorPMInnerRadius": "RotorPMAxialOuterRadius-3mm",#
+    "RotorIronInnerRadius": "RotorPMInnerRadius+0.5mm",#
+    "WindingThickness": "3.2mm",#
+    "WindingRadialLength": "13.3mm",#
+    "rpm": "3000",#
     "StatorPoleTeethAdditionLength": "2mm",
-    "StatorPoleArcTang": "1mm",
-    "turnm": "90",
-    "turns": "100",
-    "Im": "2A",
-    "ImA": "Im*cos(rpm/60*2*pi*time*4+pi/2)",
-    "ImB": "Im*cos(rpm/60*2*pi*time*4+pi/2-2*pi/3)",
-    "ImC": "Im*cos(rpm/60*2*pi*time*4+pi/2+2*pi/3)",
-    "StatorPoleTeethStartX": "sqrt(StatorPMOuterRadius^2-(StatorPoleWidth/2)^2)meter",
-    "StatorPoleTeethAngle": "45deg",
-    "NumPolePairs":"4",
-    "R_phase":"0.6Ohm"
+    "StatorPoleArcTang": "1mm",#
+    "turnm": "90",#
+    "turns": "100",#
+    "Im": "2A",#
+    "ImA": "Im*cos(rpm/60*2*pi*time*4+pi/2)",#
+    "ImB": "Im*cos(rpm/60*2*pi*time*4+pi/2-2*pi/3)",#
+    "ImC": "Im*cos(rpm/60*2*pi*time*4+pi/2+2*pi/3)",#
+    "StatorPoleTeethStartX": "sqrt(StatorPMOuterRadius^2-(StatorPoleWidth/2)^2)meter",#
+    "StatorPoleTeethAngle": "45deg",#
+    "NumPolePairs":"4",#
+    "R_phase":"0.6Ohm"#
 }
 
 # Save the dictionary as a JSON file

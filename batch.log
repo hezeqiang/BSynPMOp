@@ -1,0 +1,1133 @@
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:49:06 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 63457. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 2:49:23 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:51:02 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 63543. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 2:51:20 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:53:41 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 63641. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 2:53:57 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:54:38 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 63714. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 21sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_WP4.aedt.
+        [info] File C:/he/HBCPM/Project_WP4.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.22271466255187988
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 2:56:24 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 3:26:42 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 64305. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 3:26:59 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 3:27:38 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 3:51:42 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 64771. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 3:52:08 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 3:53:26 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 64900. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 3:54:01 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 4:06:12 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 65212. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 4:07:07 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 4:21:41 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 49175. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 4:22:35 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 5:15:17 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 49921. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_O71.aedt.
+        [info] File C:/he/HBCPM/Project_O71.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.2204148769378662
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 5:16:13 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 5:57:35 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50857. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 5:57:51 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:05:08 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[error] While parsing expression: "-StatorAxialThickness/2-0.3mm-SusWindingThickness", an error was found near character 48. 'SusWindingThickness' is not a defined variable name in this context.
+While parsing expression: "-StatorYokeWidth/2-0.5mm-SusWindingThickness", an error was found near character 43. 'SusWindingThickness' is not a defined variable name in this context.
+
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51037. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [error] While parsing expression: "-StatorAxialThickness/2-0.3mm-SusWindingThickness", an error was found near character 48. 'SusWindingThickness' is not a defined variable name in this context. While parsing expression: "-StatorYokeWidth/2-0.5mm-SusWindingThickness", an error was found near character 43. 'SusWindingThickness' is not a defined variable name in this context. 
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_5Z2.aedt.
+        [info] File C:/he/HBCPM/Project_5Z2.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.2625598907470703
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2179, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_1' (06:06:06 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2179, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_2' (06:06:06 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2187, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_a' (06:06:06 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2179, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_1' (06:06:07 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2179, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_2' (06:06:07 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2187, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_b' (06:06:08 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 6:06:17 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:15:23 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[error] While parsing expression: "-StatorAxialThickness/2-SusWindingThickness-0.3mm", an error was found near character 43. 'SusWindingThickness' is not a defined variable name in this context.
+While parsing expression: "-StatorYokeWidth/2-SusWindingThickness-0.5mm", an error was found near character 38. 'SusWindingThickness' is not a defined variable name in this context.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51329. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [error] While parsing expression: "-StatorAxialThickness/2-SusWindingThickness-0.3mm", an error was found near character 43. 'SusWindingThickness' is not a defined variable name in this context. While parsing expression: "-StatorYokeWidth/2-SusWindingThickness-0.5mm", an error was found near character 38. 'SusWindingThickness' is not a defined variable name in this context. 
+        [warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard. 
+        [warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_BWE.aedt.
+        [info] File C:/he/HBCPM/Project_BWE.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.2987833023071289
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard. 
+        [warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_1' (06:16:15 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_2' (06:16:16 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2186, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_a' (06:16:16 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_1' (06:16:17 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_2' (06:16:17 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2186, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_b' (06:16:17 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 6:16:29 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:20:47 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51518. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_OHL.aedt.
+        [info] File C:/he/HBCPM/Project_OHL.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.364105224609375
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 1sec
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_1' (06:21:46 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_2' (06:21:47 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2186, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_a' (06:21:47 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_1' (06:21:48 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_2' (06:21:48 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2186, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_b' (06:21:48 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 6:21:58 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:33:34 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51801. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_T8S.aedt.
+        [info] File C:/he/HBCPM/Project_T8S.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.40894174575805664
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 1sec
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_1' (06:34:23 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_2' (06:34:23 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2186, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_a' (06:34:24 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_1' (06:34:24 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_2' (06:34:25 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2186, in <module>
+        [error]     HBCPM.assign_winding(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'phase_b' (06:34:25 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 6:34:35 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:37:31 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51946. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_LHK.aedt.
+        [info] File C:/he/HBCPM/Project_LHK.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.3165702819824219
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 1sec
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_1' (06:38:26 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_2' (06:38:26 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_1' (06:38:27 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2178, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_2' (06:38:27 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 6:38:36 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:38:40 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 52024. 
+-- Message Window --
+Stopping Batch Run: 6:39:12 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:45:55 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 52193. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_2PI.aedt.
+        [info] File C:/he/HBCPM/Project_2PI.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.187819242477417
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 6:46:51 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:57:23 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 52452. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_EIU.aedt.
+        [info] File C:/he/HBCPM/Project_EIU.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.18817567825317383
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_1' (06:58:02 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_2' (06:58:03 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_3' (06:58:04 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'a_4' (06:58:04 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_1' (06:58:06 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_2' (06:58:07 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_3' (06:58:07 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'b_4' (06:58:08 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'c_1' (06:58:09 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'c_2' (06:58:10 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'c_3' (06:58:11 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2162, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'c_4' (06:58:12 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 6:58:25 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 7:00:38 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 52570. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 7:00:58 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 7:01:35 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 52649. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_L9T.aedt.
+        [info] File C:/he/HBCPM/Project_L9T.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.16919922828674316
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2193, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'sa_1' (07:02:24 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2193, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'sa_2' (07:02:25 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2193, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'sb_1' (07:02:26 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2193, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'sb_2' (07:02:26 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 7:02:35 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 7:05:36 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 7:07:32 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 52889. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_LBN.aedt.
+        [info] File C:/he/HBCPM/Project_LBN.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.2473313808441162
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 7:08:25 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 7:25:39 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 53289. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_035.aedt.
+        [info] File C:/he/HBCPM/Project_035.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.21325111389160156
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 7:26:46 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:02:44 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 53820. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_KU5.aedt.
+        [info] File C:/he/HBCPM/Project_KU5.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.17072033882141113
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:03:29 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:04:11 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 53894. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_4IZ.aedt.
+        [info] File C:/he/HBCPM/Project_4IZ.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.173309326171875
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:04:58 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:10:16 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54015. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_2XA.aedt.
+        [info] File C:/he/HBCPM/Project_2XA.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.16753697395324707
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:11:02 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:11:53 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54091. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_1YV.aedt.
+        [info] File C:/he/HBCPM/Project_1YV.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.20269250869750977
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:12:38 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:13:40 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54174. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_XEQ.aedt.
+        [info] File C:/he/HBCPM/Project_XEQ.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.17813777923583984
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:14:26 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:17:13 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54266. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_ZGA.aedt.
+        [info] File C:/he/HBCPM/Project_ZGA.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.16934680938720703
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:17:59 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:23:04 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54383. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_FD7.aedt.
+        [info] File C:/he/HBCPM/Project_FD7.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.20479583740234375
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:23:51 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:26:41 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54486. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_9VS.aedt.
+        [info] File C:/he/HBCPM/Project_9VS.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.20189642906188965
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:27:29 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:29:00 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54568. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_W0W.aedt.
+        [info] File C:/he/HBCPM/Project_W0W.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.19117522239685059
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:29:57 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:33:50 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:37:08 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54820. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_TGY.aedt.
+        [info] File C:/he/HBCPM/Project_TGY.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.15605568885803223
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2247, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'sa_1' (08:37:50 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2296, in <module>
+        [error] AEDT API Error on add_winding_coils
+        [error] Last Electronics Desktop Message - [error] script macro error: 'sa_2' does not exist in the design. (08:37:51 pm  jan 09, 2025)  
+        [error] Method arguments: 
+        [error]     assignment = Phase_sa 
+        [error]     coils = ['sa_1', 'sa_2'] 
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2254, in <module>
+        [error]     HBCPM.assign_coil(
+        [error] AEDT API Error on create
+        [error] Last Electronics Desktop Message - [error] script macro error: duplicate excitation name: 'sb_1' (08:37:51 pm  jan 09, 2025)  
+        [error] **************************************************************
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\Aedt_practice with optimetrics.py", line 2296, in <module>
+        [error] AEDT API Error on add_winding_coils
+        [error] Last Electronics Desktop Message - [error] script macro error: 'sb_2' does not exist in the design. (08:37:52 pm  jan 09, 2025)  
+        [error] Method arguments: 
+        [error]     assignment = Phase_sb 
+        [error]     coils = ['sb_1', 'sb_2'] 
+        [error] **************************************************************
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:37:59 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:38:29 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54893. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_H64.aedt.
+        [info] File C:/he/HBCPM/Project_H64.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.15589261054992676
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:39:23 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:40:39 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:45:39 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 55127. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_K6T.aedt.
+        [info] File C:/he/HBCPM/Project_K6T.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.19448375701904297
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:46:32 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:49:43 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 55267. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_OBN.aedt.
+        [info] File C:/he/HBCPM/Project_OBN.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.18230366706848145
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 8:50:36 PM  Jan 09, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 9:01:00 PM  Jan 09, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft

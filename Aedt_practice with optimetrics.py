@@ -4,7 +4,8 @@ import os,time,json
 import pyaedt
 from ansys.aedt.core.visualization.plot.pdf import AnsysReport
 from SimuMotorPara import HBCPMConcentratedWindingParameters
-
+from GeneratePhaseCoil import generate_three_phases
+from GeneratePhaseCoil import generate_two_phases
 
 # Launch AEDT
 AedtVersion = "2024.1"  # Replace with your installed AEDT version
@@ -24,7 +25,50 @@ HBCPM = Maxwell3d(
                 non_graphical=False, 
                 close_on_exit=True)
 
-HBCPMSimuPara = HBCPMConcentratedWindingParameters()
+params = {
+    "NumPolePairs": 8,
+    "StatorPoleNumber": 12,
+    "RadialPM": True,
+	"RadialPMPoleArcRatio": 0.8,
+	
+    "RadialPMThickness": 2,
+
+    "RotorInnerRadius": 16.6,
+    "RotorCenterThickness": 8,
+    "RotorOuterRadius": 25,
+
+    "RotorPMAxialThickness": 2,
+    "RotorPMAxialRadialWidth": 3,
+
+    "RotorIronOuterRadius": 25,
+    "RotorIronThickness": 1.5,
+
+    "StatorInnerRadius": 27,
+    "StatorAxialThickness": 8,
+    "StatorOuterRadius": 56,
+    "StatorPoleWidthArcRatio": 0.57,
+    "StatorYokeWidth": 8,
+
+    "StatorPMRadialWidth": 3,
+    "StatorPMThickness": 2,
+    "StatorIronThickness": 1.5,
+
+    "StatorPoleToothWidthArcRatio": 1 / 4,
+    "StatorPoleTeethAngle": 45,
+
+    "WindingRadialLength": 13.3,
+
+    "rpm": 3000,
+    "turnm": 90,
+    "turns": 100,
+    "Im": 2,
+    "R_phase": 0.6,
+
+	"Is_a":1,
+    "Is_b":1,
+}
+
+HBCPMSimuPara = HBCPMConcentratedWindingParameters(params)
 
 HBCPM.solution_type = HBCPM.SOLUTIONS.Maxwell3d.Transient
 
@@ -44,6 +88,7 @@ print(oEditor)
 # Define variables and expressions in a dictionary
 variables = {
 	"RadialPMNumber":str(HBCPMSimuPara.NumPolePairs),
+	"StatorPoleNumber":str(HBCPMSimuPara.StatorPoleNumber),
 	"RadialPMAngle": str(HBCPMSimuPara.RadialPMAngle)+"deg",
 
     "RotorInnerRadius": str(HBCPMSimuPara.RotorInnerRadius)+"mm",
@@ -70,9 +115,14 @@ variables = {
     "StatorIronOuterRadius": str(HBCPMSimuPara.StatorIronOuterRadius)+"mm",
     "RotorIronInnerRadius": str(HBCPMSimuPara.RotorIronInnerRadius)+"mm",
 
-    "StatorPoleTeethAdditionLength": "2mm",
-	"StatorPoleTeethAngle": "2mm",
-		
+    "StatorPoleTeethAdditionLength": str(HBCPMSimuPara.StatorPoleWidth/4)+"mm",
+	"StatorPoleTeethAngle":  str(HBCPMSimuPara.StatorPoleTeethAngle)+"deg",
+
+    "StatorPoleTeethStartX": str(HBCPMSimuPara.StatorPoleTeethStartX)+"mm",
+
+
+	"SusWindThickness": str(HBCPMSimuPara.SusWindThickness)+"mm",
+    "SusWindingLength": str(HBCPMSimuPara.SusWindLength)+"mm",
 	"WindingThickness": str(HBCPMSimuPara.WindingThickness)+"mm",
     "WindingRadialLength": str(HBCPMSimuPara.WindingRadialLength)+"mm",
     "rpm": str(HBCPMSimuPara.rpm),
@@ -80,10 +130,12 @@ variables = {
     "turnm": str(HBCPMSimuPara.turnm),
     "turns": str(HBCPMSimuPara.turns),
     "Im": str(HBCPMSimuPara.Im)+"A",
+	"Is_a": str(HBCPMSimuPara.Is_a)+"A",
+	"Is_b": str(HBCPMSimuPara.Is_b)+"A",
 
-    "ImA": "Im*cos(rpm/60*2*pi*time*4+pi/2)",
-    "ImB": "Im*cos(rpm/60*2*pi*time*4+pi/2-2*pi/3)",
-    "ImC": "Im*cos(rpm/60*2*pi*time*4+pi/2+2*pi/3)",
+    "ImA": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2)",
+    "ImB": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
+    "ImC": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
 
     "NumPolePairs":str(HBCPMSimuPara.NumPolePairs),
 
@@ -243,35 +295,67 @@ if (BuildMotor==True):
 		])
 
 	# Rotor radial PM
-	RotorRadialPM = oEditor.CreateRectangle(
-		[
-			"NAME:RectangleParameters",
-			"IsCovered:="		, True,
-			"XStart:="		, "RotorOuterRadius-RadialPMThickness",
-			"YStart:="		, "-RotorCenterThickness/2",
-			"ZStart:="		, "0mm",
-			"Width:="		, "RadialPMThickness",
-			"Height:="		, "RotorCenterThickness",
-			"WhichAxis:="		, "Z"
-		], 
-		[
-			"NAME:Attributes",
-			"Name:="		, "RotorRadialPM",
-			"Flags:="		, "",
-			"Color:="		, "(143 175 143)",
-			"Transparency:="	, 0,
-			"PartCoordinateSystem:=", "Global",
-			"UDMId:="		, "",
-			"MaterialValue:="	, "\"TDK_NEOREC40TH_60cel_Radial\"",
-			"SurfaceMaterialValue:=", "\"\"",
-			"SolveInside:="		, True,
-			"ShellElement:="	, False,
-			"ShellElementThickness:=", "0mm",
-			"ReferenceTemperature:=", "20cel",
-			"IsMaterialEditable:="	, True,
-			"UseMaterialAppearance:=", False,
-			"IsLightweight:="	, False
-		])
+	if (HBCPMSimuPara.RadialPM == True):
+		RotorRadialPM = oEditor.CreateRectangle(
+			[
+				"NAME:RectangleParameters",
+				"IsCovered:="		, True,
+				"XStart:="		, "RotorOuterRadius-RadialPMThickness",
+				"YStart:="		, "-RotorCenterThickness/2",
+				"ZStart:="		, "0mm",
+				"Width:="		, "RadialPMThickness",
+				"Height:="		, "RotorCenterThickness",
+				"WhichAxis:="		, "Z"
+			], 
+			[
+				"NAME:Attributes",
+				"Name:="		, "RotorRadialPM",
+				"Flags:="		, "",
+				"Color:="		, "(143 175 143)",
+				"Transparency:="	, 0,
+				"PartCoordinateSystem:=", "Global",
+				"UDMId:="		, "",
+				"MaterialValue:="	, "\"TDK_NEOREC40TH_60cel_Radial\"",
+				"SurfaceMaterialValue:=", "\"\"",
+				"SolveInside:="		, True,
+				"ShellElement:="	, False,
+				"ShellElementThickness:=", "0mm",
+				"ReferenceTemperature:=", "20cel",
+				"IsMaterialEditable:="	, True,
+				"UseMaterialAppearance:=", False,
+				"IsLightweight:="	, False
+			])
+	else:
+		RotorRadialPM = oEditor.CreateRectangle(
+			[
+				"NAME:RectangleParameters",
+				"IsCovered:="		, True,
+				"XStart:="		, "RotorOuterRadius-RadialPMThickness",
+				"YStart:="		, "-RotorCenterThickness/2",
+				"ZStart:="		, "0mm",
+				"Width:="		, "RadialPMThickness",
+				"Height:="		, "RotorCenterThickness",
+				"WhichAxis:="		, "Z"
+			], 
+			[
+				"NAME:Attributes",
+				"Name:="		, "RotorRadialPM",
+				"Flags:="		, "",
+				"Color:="		, "(143 175 143)",
+				"Transparency:="	, 0,
+				"PartCoordinateSystem:=", "Global",
+				"UDMId:="		, "",
+				"MaterialValue:="	, "\"vacuum\"",
+				"SurfaceMaterialValue:=", "\"\"",
+				"SolveInside:="		, True,
+				"ShellElement:="	, False,
+				"ShellElementThickness:=", "0mm",
+				"ReferenceTemperature:=", "20cel",
+				"IsMaterialEditable:="	, True,
+				"UseMaterialAppearance:=", False,
+				"IsLightweight:="	, False
+			])
+
 
 	oEditor.SweepAroundAxis(
 		[
@@ -337,7 +421,7 @@ if (BuildMotor==True):
 			"NAME:DuplicateAroundAxisParameters",
 			"CreateNewObjects:="	, True,
 			"WhichAxis:="		, "Y",
-			"AngleStr:="		, "90deg",
+			"AngleStr:="		, "(360/RadialPMNumber)deg",
 			"NumClones:="		, "RadialPMNumber"
 		], 
 		[
@@ -387,7 +471,7 @@ if (BuildMotor==True):
 			"Transparency:="	, 0,
 			"PartCoordinateSystem:=", "Global",
 			"UDMId:="		, "",
-			"MaterialValue:="	, "\"TDK_NEOREC40TH_60cel_Up\"",
+			"MaterialValue:="	, "\"TDK_NEOREC40TH_60cel_Down\"",
 			"SurfaceMaterialValue:=", "\"\"",
 			"SolveInside:="		, True,
 			"ShellElement:="	, False,
@@ -456,7 +540,7 @@ if (BuildMotor==True):
 					"NAME:ChangedProps",
 					[
 						"NAME:Material",
-						"Value:="		, "\"TDK_NEOREC40TH_60cel_Down\""
+						"Value:="		, "\"TDK_NEOREC40TH_60cel_Up\""
 					]
 				]
 			]
@@ -562,7 +646,7 @@ if (BuildMotor==True):
 			"Transparency:="	, 0,
 			"PartCoordinateSystem:=", "Global",
 			"UDMId:="		, "",
-			"MaterialValue:="	, "\"TDK_NEOREC40TH_60cel_Down\"",
+			"MaterialValue:="	, "\"TDK_NEOREC40TH_60cel_Up\"",
 			"SurfaceMaterialValue:=", "\"\"",
 			"SolveInside:="		, True,
 			"ShellElement:="	, False,
@@ -631,7 +715,7 @@ if (BuildMotor==True):
 					"NAME:ChangedProps",
 					[
 						"NAME:Material",
-						"Value:="		, "\"TDK_NEOREC40TH_60cel_Up\""
+						"Value:="		, "\"TDK_NEOREC40TH_60cel_Down\""
 					]
 				]
 			]
@@ -1212,8 +1296,8 @@ if (BuildMotor==True):
 			"NAME:DuplicateAroundAxisParameters",
 			"CreateNewObjects:="	, True,
 			"WhichAxis:="		, "Y",
-			"AngleStr:="		, "30deg",
-			"NumClones:="		, "12"
+			"AngleStr:="		, "(360/StatorPoleNumber)deg",
+			"NumClones:="		, "StatorPoleNumber"
 		], 
 		[
 			"NAME:Options",
@@ -1356,8 +1440,8 @@ if (BuildMotor==True):
 			"NAME:DuplicateAroundAxisParameters",
 			"CreateNewObjects:="	, True,
 			"WhichAxis:="		, "Y",
-			"AngleStr:="		, "30deg",
-			"NumClones:="		, "12"
+			"AngleStr:="		, "(360/StatorPoleNumber)deg",
+			"NumClones:="		, "StatorPoleNumber"
 		], 
 		[
 			"NAME:Options",
@@ -1410,8 +1494,252 @@ if (BuildMotor==True):
 
 	##################################################################
 	#Create Suspension Windings
+	SuspensionWindingsubtractor = oEditor.CreateRectangle(
+		[
+			"NAME:RectangleParameters",
+			"IsCovered:="		, True,
+			"XStart:="		, "-StatorYokeWidth/2-0.5mm",
+			"YStart:="		, "-StatorAxialThickness/2-0.3mm",
+			"ZStart:="		, "0mm",
+			"Width:="		, "StatorYokeWidth+1mm",
+			"Height:="		, "StatorAxialThickness+0.6mm",
+			"WhichAxis:="		, "Z"
+		], 
+		[
+			"NAME:Attributes",
+			"Name:="		, "SuspensionWindingsubtractor",
+			"Flags:="		, "",
+			"Color:="		, "(143 175 143)",
+			"Transparency:="	, 0,
+			"PartCoordinateSystem:=", "Global",
+			"UDMId:="		, "",
+			"MaterialValue:="	, "\"copper\"",
+			"SurfaceMaterialValue:=", "\"\"",
+			"SolveInside:="		, True,
+			"ShellElement:="	, False,
+			"ShellElementThickness:=", "0mm",
+			"ReferenceTemperature:=", "20cel",
+			"IsMaterialEditable:="	, True,
+			"UseMaterialAppearance:=", False,
+			"IsLightweight:="	, False
+		])
 
+	SuspensionWinding = oEditor.CreateRectangle(
+		[
+			"NAME:RectangleParameters",
+			"IsCovered:="		, True,
+			"XStart:="		, "-StatorYokeWidth/2-SusWindThickness-0.5mm",
+			"YStart:="		, "-StatorAxialThickness/2-SusWindThickness-0.3mm",
+			"ZStart:="		, "0mm",
+			"Width:="		, "StatorYokeWidth+2*SusWindThickness+1mm",
+			"Height:="		, "StatorAxialThickness+2*SusWindThickness+0.6mm",
+			"WhichAxis:="		, "Z"
+		], 
+		[
+			"NAME:Attributes",
+			"Name:="		, "SuspensionWinding",
+			"Flags:="		, "",
+			"Color:="		, "(143 175 143)",
+			"Transparency:="	, 0,
+			"PartCoordinateSystem:=", "Global",
+			"UDMId:="		, "",
+			"MaterialValue:="	, "\"copper\"",
+			"SurfaceMaterialValue:=", "\"\"",
+			"SolveInside:="		, True,
+			"ShellElement:="	, False,
+			"ShellElementThickness:=", "0mm",
+			"ReferenceTemperature:=", "20cel",
+			"IsMaterialEditable:="	, True,
+			"UseMaterialAppearance:=", False,
+			"IsLightweight:="	, False
+		])
 
+	oEditor.Subtract(
+		[
+			"NAME:Selections",
+			"Blank Parts:="		, SuspensionWinding,
+			"Tool Parts:="		, SuspensionWindingsubtractor
+		], 
+		[
+			"NAME:SubtractParameters",
+			"KeepOriginals:="	, False,
+			"TurnOnNBodyBoolean:="	, True
+		])
+
+	oEditor.SweepAlongVector(
+		[
+			"NAME:Selections",
+			"Selections:="		, SuspensionWinding,
+			"NewPartsModelFlag:="	, "Model"
+		], 
+		[
+			"NAME:VectorSweepParameters",
+			"DraftAngle:="		, "0deg",
+			"DraftType:="		, "Round",
+			"CheckFaceFaceIntersection:=", False,
+			"ClearAllIDs:="		, False,
+			"SweepVectorX:="	, "0mm",
+			"SweepVectorY:="	, "0",
+			"SweepVectorZ:="	, "SusWindingLength"
+		])
+
+	oEditor.Move(
+		[
+			"NAME:Selections",
+			"Selections:="		, SuspensionWinding,
+			"NewPartsModelFlag:="	, "Model"
+		], 
+		[
+			"NAME:TranslateParameters",
+			"TranslateVectorX:="	, "0mm",
+			"TranslateVectorY:="	, "0mm",
+			"TranslateVectorZ:="	, "-SusWindingLength/2"
+		])
+	
+	oEditor.Rotate(
+		[
+			"NAME:Selections",
+			"Selections:="		, SuspensionWinding,
+			"NewPartsModelFlag:="	, "Model"
+		], 
+		[
+			"NAME:RotateParameters",
+			"RotateAxis:="		, "Y",
+			"RotateAngle:="		, "45deg"
+		])
+
+	oEditor.Move(
+		[
+			"NAME:Selections",
+			"Selections:="		, SuspensionWinding,
+			"NewPartsModelFlag:="	, "Model"
+		], 
+		[
+			"NAME:TranslateParameters",
+			"TranslateVectorX:="	, "(StatorOuterRadius-StatorYokeWidth/2)*0.707-0.3mm",# 1/sqrt(2)=0.707
+			"TranslateVectorY:="	, "0mm",
+			"TranslateVectorZ:="	, "-(StatorOuterRadius-StatorYokeWidth/2)*0.707+0.3mm"
+		])
+
+	oEditor.Rotate(
+		[
+			"NAME:Selections",
+			"Selections:="		, SuspensionWinding,
+			"NewPartsModelFlag:="	, "Model"
+		], 
+		[
+			"NAME:RotateParameters",
+			"RotateAxis:="		, "Y",
+			"RotateAngle:="		, "-45deg"
+		])
+
+	if(HBCPMSimuPara.SuspensionWindingFullSlot == False):
+		oEditor.Rotate(
+			[
+				"NAME:Selections",
+				"Selections:="		, SuspensionWinding,
+				"NewPartsModelFlag:="	, "Model"
+			], 
+			[
+				"NAME:RotateParameters",
+				"RotateAxis:="		, "Y",
+				"RotateAngle:="		, "45deg"
+			])
+
+		SuspensionWindingDup = oEditor.DuplicateAroundAxis(
+			[
+				"NAME:Selections",
+				"Selections:="		, SuspensionWinding,
+				"NewPartsModelFlag:="	, "Model"
+			], 
+			[
+				"NAME:DuplicateAroundAxisParameters",
+				"CreateNewObjects:="	, True,
+				"WhichAxis:="		, "Y",
+				"AngleStr:="		, "90deg",
+				"NumClones:="		, "4"
+			], 
+			[
+				"NAME:Options",
+				"DuplicateAssignments:=", True
+			], 
+			[
+				"CreateGroupsForNewObjects:=", False
+			])
+	else:
+		oEditor.Rotate(
+			[
+				"NAME:Selections",
+				"Selections:="		, SuspensionWinding,
+				"NewPartsModelFlag:="	, "Model"
+			], 
+			[
+				"NAME:RotateParameters",
+				"RotateAxis:="		, "Y",
+				"RotateAngle:="		, "(360/StatorPoleNumber/2)deg"
+			])
+
+		SuspensionWindingDup = oEditor.DuplicateAroundAxis(
+			[
+				"NAME:Selections",
+				"Selections:="		, SuspensionWinding,
+				"NewPartsModelFlag:="	, "Model"
+			], 
+			[
+				"NAME:DuplicateAroundAxisParameters",
+				"CreateNewObjects:="	, True,
+				"WhichAxis:="		, "Y",
+				"AngleStr:="		, "(360/StatorPoleNumber)deg",
+				"NumClones:="		, "StatorPoleNumber"
+			], 
+			[
+				"NAME:Options",
+				"DuplicateAssignments:=", True
+			], 
+			[
+				"CreateGroupsForNewObjects:=", False
+			])
+
+	SuspensionWindingList=[SuspensionWinding]
+	SuspensionWindingList.extend(SuspensionWindingDup)
+
+	print("Create " + str(SuspensionWindingList) + " successful")
+
+	SuspensionWindingSectionList= oEditor.Section(
+		[
+			"NAME:Selections",
+			"Selections:="		, ",".join(map(str, SuspensionWindingList)),
+			"NewPartsModelFlag:="	, "Model"
+		], 
+		[
+			"NAME:SectionToParameters",
+			"CreateNewObjects:="	, True,
+			"SectionPlane:="	, "ZX",
+			"SectionCrossObject:="	, False
+		])
+
+	# print(ArmatureWindingSectionList)
+
+	SuspensionWindingSectionSeparateList = oEditor.SeparateBody(
+		[
+			"NAME:Selections",
+			"Selections:="		, ",".join(map(str, SuspensionWindingSectionList)),
+			"NewPartsModelFlag:="	, "Model"
+		], 
+		[
+			"CreateGroupsForNewObjects:=", False
+		])
+
+	# Create a new list with strings ending with "Separate1"
+	SuspensionWindingSectionDeleteList = [s for s in SuspensionWindingSectionSeparateList if s.endswith("Separate1")]
+
+	# print(ArmatureWindingSectionDeleteList)
+
+	oEditor.Delete(
+		[
+			"NAME:Selections",
+			"Selections:="		, ",".join(map(str, SuspensionWindingSectionDeleteList))
+		])
 
 	################################################################
 	# air boundry, band, air gap segment
@@ -1677,7 +2005,8 @@ if (BuildMotor==True):
 	print("Create " + str(AirgapList) + " successful")
 
 	desktop.save_project()
-##################################################### Mesh Operation
+##################################################### 
+# Mesh Operation
 
 if (CreateMesh==True):
 	print("CreateMesh")
@@ -1788,6 +2117,7 @@ if (CreateMesh==True):
 			"MaxLength:="		, "3mm"
 		])
 
+
 	###################################################################
 	# Set force and torque
 
@@ -1858,27 +2188,105 @@ if (CreateExcitation==True):
 	# print(ArmatureWindingSectionList)
 
 	# Define the phase configurations
-	Phases = [
-		{"name": "Phase_A", "current": "ImA", "group": ["A_1", "A_2", "A_3", "A_4"]},
-		{"name": "Phase_B", "current": "ImB", "group": ["B_1", "B_2", "B_3", "B_4"]},
-		{"name": "Phase_C", "current": "ImC", "group": ["C_1", "C_2", "C_3", "C_4"]},
-	]
+	ArmaturePhases = generate_three_phases(HBCPMSimuPara.Armature_coil_number)
 
-	Phasedivisor = len(Phases)
+	if(HBCPMSimuPara.SuspensionWindingFullSlot == False):
+		SuspensionPhases = generate_two_phases(4)
+	else:
+		SuspensionPhases = generate_two_phases(HBCPMSimuPara.Armature_coil_number)
+
+	# ArmaturePhases = [
+	# 	{"name": "Phase_A", "current": "ImA", "group": ["A_1", "A_2", "A_3", "A_4"]},
+	# 	{"name": "Phase_B", "current": "ImB", "group": ["B_1", "B_2", "B_3", "B_4"]},
+	# 	{"name": "Phase_C", "current": "ImC", "group": ["C_1", "C_2", "C_3", "C_4"]},
+	# ]
+
+	# SuspensionPhases [{'name': 'Phase_sa', 'current': 'Is_a', 'group': ['sa_1', 'sa_2']},
+	#                   {'name': 'Phase_sb', 'current': 'Is_b', 'group': ['sb_1', 'sb_2']}]
+	ArmaturePhasedivisor = len(ArmaturePhases) # 3
+	SuspensionPhasedivisor = len(SuspensionPhases) # 2
 
 	# Process each phase
-	for phase_index, phase in enumerate(Phases):
+	for phase_index, phase in enumerate(ArmaturePhases):
 		winding_group = phase["group"]
 
 		# Assign coils for the current phase
 		for index, element in enumerate(ArmatureWindingSectionList):
-			if index % Phasedivisor == phase_index:
+			if index % ArmaturePhasedivisor == phase_index:
 				HBCPM.assign_coil(
 					assignment=ArmatureWindingSectionList[index],
 					conductors_number="turnm",
 					polarity="Nagative",
-					name=winding_group[int((index - phase_index) / Phasedivisor)],
+					name=winding_group[int((index - phase_index) / ArmaturePhasedivisor)],
 				)
+
+		# Assign the winding
+		HBCPM.assign_winding(
+			assignment=None,
+			winding_type="Current",
+			is_solid=False,
+			current=phase["current"],
+			parallel_branches=1,
+			name=phase["name"],
+		)
+
+		# Add winding coils
+		HBCPM.add_winding_coils(
+			assignment=phase["name"], coils=winding_group
+		)
+
+		# Process each phase
+	
+	for phase_index, phase in enumerate(SuspensionPhases):
+		winding_group = phase["group"]
+		winding_group_index=0
+
+		# Assign coils for the current phase
+		for index, element in enumerate(SuspensionWindingSectionList):
+			
+			if(HBCPMSimuPara.SuspensionWindingFullSlot == False):
+				if index % SuspensionPhasedivisor == phase_index:
+					if index in (1, 2):
+						HBCPM.assign_coil(
+							assignment=SuspensionWindingSectionList[index],
+							conductors_number="turns",
+							polarity="Positive",
+							name=winding_group[winding_group_index],
+						)
+					else:
+						HBCPM.assign_coil(
+							assignment=SuspensionWindingSectionList[index],
+							conductors_number="turns",
+							polarity="Nagative",
+							name=winding_group[winding_group_index],
+						)
+						
+					winding_group_index+=1
+				
+			else: 
+
+				if (((index-HBCPMSimuPara.StatorPoleNumber/2/2*float(phase_index)) % float(HBCPMSimuPara.StatorPoleNumber/2)) < float(HBCPMSimuPara.StatorPoleNumber/2/2)):
+					print(index)
+					print("enter loop, winding_group_index+1 **************************")
+
+
+					if index in range(int(HBCPMSimuPara.StatorPoleNumber/2/2), int(HBCPMSimuPara.StatorPoleNumber/2)+3):
+						
+						HBCPM.assign_coil(
+							assignment=SuspensionWindingSectionList[index],
+							conductors_number="turns",
+							polarity="Positive",
+							name=winding_group[winding_group_index],
+						)
+					else:
+						HBCPM.assign_coil(
+							assignment=SuspensionWindingSectionList[index],
+							conductors_number="turns",
+							polarity="Nagative",
+							name=winding_group[winding_group_index],
+						)
+
+					winding_group_index+=1
 
 		# Assign the winding
 		HBCPM.assign_winding(
@@ -1923,6 +2331,8 @@ if(Createsetup==True):
 	HBCPM.validate_simple()
 
 #################################################################
+# generate report
+
 if(Postprocessing==True):
 	print("postprocessing")
 
@@ -2069,7 +2479,8 @@ if(Postprocessing==True):
 
 #################################################################
 # Using builtin optimizer or selfdefine optimizer
-		
+
+"""	
 if(BuildInOptimization==True):
   # Set Optimization  
 
@@ -2234,6 +2645,8 @@ if(BuildInOptimization==True):
 	oModule.SolveSetup("OptimizationSetup1")
 else:
 	pass
+     
+"""
 
 desktop.save_project()
 desktop.release_desktop()
