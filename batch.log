@@ -1131,3 +1131,533 @@ Starting Batch Run: 9:01:00 PM  Jan 09, 2025
 Running as user : KAFU\shins
 Temp directory: C:\Users\shins\AppData\Local\Temp
 Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 12:37:58 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 49281. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_PC6/Project_PC6.aedt.
+        [info] File C:/he/HBCPM/Project_PC6/Project_PC6.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.22800946235656738
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_PC6 Saved correctly
+-- Message Window --
+Stopping Batch Run: 12:39:53 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:21:18 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 49909. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:21:56 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:28:15 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50048. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:28:52 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:29:43 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50128. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:30:21 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:34:11 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50250. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:34:54 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:37:30 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50345. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:38:14 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:48:23 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50515. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:49:03 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:49:45 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50586. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:50:00 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:50:22 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50656. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 1:51:00 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:51:22 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50726. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_ZZO/Project_ZZO.aedt.
+        [info] File C:/he/HBCPM/Project_ZZO/Project_ZZO.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.18903779983520508
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 1:52:54 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 1:56:51 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 50850. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_21S/Project_21S.aedt.
+        [info] File C:/he/HBCPM/Project_21S/Project_21S.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.23165655136108398
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_21S Saved correctly
+-- Message Window --
+Stopping Batch Run: 1:58:37 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:06:16 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51061. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_V80/Project_V80.aedt.
+        [info] File C:/he/HBCPM/Project_V80/Project_V80.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.18810129165649414
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 2:07:49 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:08:28 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51149. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_KPA/Project_KPA.aedt.
+        [info] File C:/he/HBCPM/Project_KPA/Project_KPA.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.19946885108947754
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+-- Message Window --
+Stopping Batch Run: 2:10:01 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:11:51 PM  Jan 10, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 51244. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_Q7X/Project_Q7X.aedt.
+        [info] File C:/he/HBCPM/Project_Q7X/Project_Q7X.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.2176046371459961
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_Q7X Saved correctly
+-- Message Window --
+Stopping Batch Run: 2:13:30 PM  Jan 10, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 4:58:56 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 55584. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 24sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_FIN/Project_FIN.aedt.
+        [info] File C:/he/HBCPM/Project_FIN/Project_FIN.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.2179279327392578
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_FIN Saved correctly
+-- Message Window --
+Stopping Batch Run: 5:01:14 PM  Jan 11, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 5:19:37 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 55835. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_UBC/Project_UBC.aedt.
+        [info] File C:/he/HBCPM/Project_UBC/Project_UBC.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.16514158248901367
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_UBC Saved correctly
+-- Message Window --
+Stopping Batch Run: 5:21:25 PM  Jan 11, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 5:31:24 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 55948. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_XUK/Project_XUK.aedt.
+        [info] File C:/he/HBCPM/Project_XUK/Project_XUK.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.15060114860534668
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_XUK Saved correctly
+-- Message Window --
+Stopping Batch Run: 5:33:09 PM  Jan 11, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:28:25 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 56433. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/Project_10Z/Project_10Z.aedt.
+        [info] File C:/he/HBCPM/Project_10Z/Project_10Z.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.1661839485168457
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_10Z Saved correctly
+-- Message Window --
+Stopping Batch Run: 6:30:05 PM  Jan 11, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:37:43 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 56744. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_OUJ/Project_OUJ.aedt.
+        [info] File C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_OUJ/Project_OUJ.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.20092105865478516
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_OUJ Saved correctly
+-- Message Window --
+Stopping Batch Run: 6:39:15 PM  Jan 11, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:49:30 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 57015. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+-- Message Window --
+Stopping Batch Run: 6:49:50 PM  Jan 11, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 6:50:16 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 57085. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/8p12s_HBCPM_with_radial_PM_four_slotProject_M32/Project_M32.aedt.
+        [info] File C:/he/HBCPM/8p12s_HBCPM_with_radial_PM_four_slotProject_M32/Project_M32.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.1521749496459961
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_M32 Saved correctly
+-- Message Window --
+Stopping Batch Run: 6:52:03 PM  Jan 11, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 8:35:58 PM  Jan 11, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+[warning] Electronics Desktop cannot be closed right now because it is being used by another application, script or extension wizard.
+
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 11:23:14 AM  Jan 15, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 52795. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Modeler class has been initialized! Elapsed time: 0m 23sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_KYY/Project_KYY.aedt.
+        [info] File C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_KYY/Project_KYY.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.1480703353881836
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Materials class has been initialized! Elapsed time: 0m 0sec
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_KYY Saved correctly
+-- Message Window --
+Stopping Batch Run: 11:25:13 AM  Jan 15, 2025

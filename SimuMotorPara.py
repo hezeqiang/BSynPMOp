@@ -47,6 +47,14 @@ class HBCPMConcentratedWindingParameters:
             "Is_a":0,
             "Is_b":0,
 
+            "BuildMotor":True,
+            "CreateMesh":True,
+            "AssignBoundryBand":True,
+            "CreateExcitation":True,
+            "Createsetup":True,
+            "Postprocessing":True,
+            "BuildInOptimization":False,
+
         }
 
         # Update defaults with provided params
@@ -116,6 +124,14 @@ class HBCPMConcentratedWindingParameters:
 
         self.Is_a=defaults_para["Is_a"]
         self.Is_b=defaults_para["Is_b"]
+
+        self.BuildMotor=defaults_para["BuildMotor"]
+        self.CreateMesh=defaults_para["CreateMesh"]
+        self.AssignBoundryBand=defaults_para["AssignBoundryBand"]
+        self.CreateExcitation=defaults_para["CreateExcitation"]
+        self.Createsetup=defaults_para["Createsetup"]
+        self.Postprocessing=defaults_para["Postprocessing"]
+        self.BuildInOptimization=defaults_para["BuildInOptimization"]
 
 
         # self.RadialPMNumber = NumPolePairs

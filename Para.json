@@ -1,7 +1,7 @@
 {
-    "RadialPMNumber": "8",
+    "RadialPMNumber": "4",
     "StatorPoleNumber": "12",
-    "RadialPMAngle": "18.0deg",
+    "RadialPMAngle": "30.6deg",
     "RotorInnerRadius": "16.6mm",
     "RotorCenterThickness": "8mm",
     "RotorOuterRadius": "25mm",
@@ -32,11 +32,11 @@
     "turnm": "90",
     "turns": "100",
     "Im": "2A",
-    "Is_a": "1A",
-    "Is_b": "1A",
+    "Is_a": "0A",
+    "Is_b": "0A",
     "ImA": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2)",
     "ImB": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
     "ImC": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
-    "NumPolePairs": "8",
+    "NumPolePairs": "4",
     "R_phase": "0.6Ohm"
 }

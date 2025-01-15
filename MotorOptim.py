@@ -58,14 +58,15 @@ Stator_Axial_PM_thickness=0.002
 Stator_Axial_PM_inner_radius=0.026
 Stator_Axial_PM_outer_radius=0.029
 
+airgap_flux_density_top_amplitude=0.4
+airgap_flux_density_bottom_amplitude=-0.4
+airgap_flux_density_flat_top_ratio=0.32
+airgap_flux_density_flat_bottom_ratio=0.5
+
 
 # plot figures or not
 plot_use_Cartesian=True
 
-airgap_flux_density_top_amplitude=0.4
-airgap_flux_density_bottom_amplitude=-0.5
-airgap_flux_density_flat_top_ratio=0.32
-airgap_flux_density_flat_bottom_ratio=0.5
 ##############################################################################
 
 
