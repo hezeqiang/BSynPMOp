@@ -1893,7 +1893,7 @@ def BuildHBCPM(params,motor_config):
 				"XCenter:="		, "0mm",
 				"YCenter:="		, "-12mm",
 				"ZCenter:="		, "0mm",
-				"Radius:="		, "4*StatorInnerRadius/8+4*RotorOuterRadius/8",
+				"Radius:="		, "4*StatorInnerRadius/8+4*RotorOuterRadius/8+0.1mm",
 				"Height:="		, "24mm",
 				"WhichAxis:="		, "Y",
 				"NumSides:="		, "0"
@@ -2275,7 +2275,7 @@ def BuildHBCPM(params,motor_config):
 				"RestrictElem:="	, False,
 				"NumMaxElem:="		, "1000",
 				"RestrictLength:="	, True,
-				"MaxLength:="		, "0.7mm"
+				"MaxLength:="		, "0.8mm"
 			])
 
 		oModule.AssignLengthOp(
@@ -3067,44 +3067,55 @@ if __name__ == '__main__':
 	"""
 	# The params dictionary
 	params = {
-		"SuspensionWindingFullSlot": True,
-		"RadialPM": True,    
-		"NumPolePairs": 8,
-		"StatorPoleNumber": 12,      
-		"RadialPMPoleArcRatio": 0.68,
-		"RadialPMThickness": 2,
-		"RotorInnerRadius": 16.6,
-		"RotorCenterThickness": 8,
-		"RotorOuterRadius": 25,
-		"RotorPMAxialThickness": 2,
-		"RotorPMAxialRadialWidth": 3,
-		"RotorIronOuterRadius": 25,
-		"RotorIronThickness": 1.5,
-		"StatorInnerRadius": 27,
-		"StatorAxialThickness": 8,
-		"StatorOuterRadius": 56,
-		"StatorPoleWidthArcRatio": 0.57,
-		"StatorYokeWidth": 8,
-		"StatorPMRadialWidth": 3,
-		"StatorPMThickness": 2,
-		"StatorIronThickness": 1.5,
-		"StatorPoleToothWidthArcRatio": 1 / 4,
-		"StatorPoleTeethAngle": 45,
-		"WindingRadialLength": 13.3,
-		"rpm": 3000,
-		"turnm": 90,
-		"turns": 100,
-		"Im": 2,
-		"R_phase": 0.6,
-		"Is_a": 0,
-		"Is_b": 0,
-		"BuildMotor": True,
-		"CreateMesh": True,
-		"AssignBoundryBand": True,
-		"CreateExcitation": True,
-		"Createsetup": True,
-		"Postprocessing": True,
-		"BuildInOptimization": False,
+            "NumPolePairs": 4,
+            "StatorPoleNumber": 12,  
+               
+            "RadialPM": True,
+            "RadialPMPoleArcRatio": 0.8,
+            "RadialPMThickness": 2,
+
+            "RotorInnerRadius": 16.6,
+            "RotorCenterThickness": 8,
+            "RotorOuterRadius": 25,
+
+            "RotorPMAxialThickness": 2,
+            "RotorPMAxialRadialWidth": 3,
+
+            "RotorIronOuterRadius": 25,
+            "RotorIronThickness": 1.5,
+
+            "StatorInnerRadius": 27,
+            "StatorAxialThickness": 8,
+            "StatorOuterRadius": 56,
+            "StatorPoleWidthArcRatio": 0.57,
+            "StatorYokeWidth": 8,
+
+            "StatorPMRadialWidth": 3,
+            "StatorPMThickness": 2,
+            "StatorIronThickness": 1.5,
+
+            "StatorPoleToothWidthArcRatio": 1 / 4,
+            "StatorPoleTeethAngle": 45,
+
+            "WindingRadialLength": 13.3,
+            "SuspensionWindingFullSlot": True,
+
+            "rpm": 3000,
+            "turnm": 90,
+            "turns": 100,
+            "Im": 2,
+            "R_phase": 0.6,
+
+            "Is_a":0,
+            "Is_b":0,
+
+            "BuildMotor":True,
+            "CreateMesh":True,
+            "AssignBoundryBand":True,
+            "CreateExcitation":True,
+            "Createsetup":True,
+            "Postprocessing":True,
+            "BuildInOptimization":False,
 	}
 
 	# Save the dictionary to a JSON file

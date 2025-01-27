@@ -1,15 +1,27 @@
 import numpy as np
 import math
+from ansys.aedt.core import Desktop, Maxwell3d, Hfss
+import ansys.aedt.core.downloads as downloads
+import os,time,json
+import pyaedt
+from ansys.aedt.core.visualization.plot.pdf import AnsysReport
+from SimuMotorPara import HBCPMConcentratedWindingParameters
+from GeneratePhaseCoil import generate_three_phases
+from GeneratePhaseCoil import generate_two_phases
+
+
 
 class HBCPMConcentratedWindingParameters:
     def __init__(self,params=None):
         
+        
         defaults_para = {
+    
             "NumPolePairs": 4,
-            "StatorPoleNumber": 12,
-            "RadialPM": True,            
+            "StatorPoleNumber": 12,  
+               
+            "RadialPM": True,
             "RadialPMPoleArcRatio": 0.8,
-
             "RadialPMThickness": 2,
 
             "RotorInnerRadius": 16.6,
@@ -133,47 +145,59 @@ class HBCPMConcentratedWindingParameters:
         self.Postprocessing=defaults_para["Postprocessing"]
         self.BuildInOptimization=defaults_para["BuildInOptimization"]
 
+"""
+        self.RadialPMNumber = NumPolePairs
+        self.StatorPoleNumber = StatorPoleNumber
+        self.RadialPMAngle = 360/2/NumPolePairs*RadialPMPoleArcRatio # Percentage
 
-        # self.RadialPMNumber = NumPolePairs
-        # self.StatorPoleNumber = StatorPoleNumber
-        # self.RadialPMAngle = 360/2/NumPolePairs*RadialPMPoleArcRatio # Percentage
+        self.RotorInnerRadius = RotorInnerRadius
+        self.RotorCenterThickness = RotorCenterThickness
+        self.RotorOuterRadius = RotorOuterRadius
+        self.RadialPMThickness = RadialPMThickness
+        self.RotorPMAxialThickness = RotorPMAxialThickness
 
-        # self.RotorInnerRadius = RotorInnerRadius
-        # self.RotorCenterThickness = RotorCenterThickness
-        # self.RotorOuterRadius = RotorOuterRadius
-        # self.RadialPMThickness = RadialPMThickness
-        # self.RotorPMAxialThickness = RotorPMAxialThickness
+        self.RotorIronOuterRadius = RotorIronOuterRadius
+        self.RotorIronThickness = RotorIronThickness
+        self.RotorIronInnerRadius = RotorIronOuterRadius - RotorPMAxialRadialWidth - RotorPMAxialRadialWidth+1
 
-        # self.RotorIronOuterRadius = RotorIronOuterRadius
-        # self.RotorIronThickness = RotorIronThickness
-        # self.RotorIronInnerRadius = RotorIronOuterRadius - RotorPMAxialRadialWidth - RotorPMAxialRadialWidth+1
+        self.RotorPMAxialOuterRadius = RotorOuterRadius - RadialPMThickness
+        self.RotorPMInnerRadius = self.RotorPMAxialOuterRadius - RotorPMAxialRadialWidth
 
-        # self.RotorPMAxialOuterRadius = RotorOuterRadius - RadialPMThickness
-        # self.RotorPMInnerRadius = self.RotorPMAxialOuterRadius - RotorPMAxialRadialWidth
+        self.StatorYokeWidth = StatorYokeWidth
+        self.StatorInnerRadius = StatorInnerRadius
+        self.StatorAxialThickness = StatorAxialThickness
+        self.StatorOuterRadius = StatorOuterRadius
 
-        # self.StatorYokeWidth = StatorYokeWidth
-        # self.StatorInnerRadius = StatorInnerRadius
-        # self.StatorAxialThickness = StatorAxialThickness
-        # self.StatorOuterRadius = StatorOuterRadius
-
-        # self.StatorPoleWidth = 2*np.sin(StatorPoleWidthArcRatio*np.pi/StatorPoleNumber) * StatorInnerRadius
-        # self.StatorPMOuterRadius = StatorInnerRadius + StatorPMRadialWidth
+        self.StatorPoleWidth = 2*np.sin(StatorPoleWidthArcRatio*np.pi/StatorPoleNumber) * StatorInnerRadius
+        self.StatorPMOuterRadius = StatorInnerRadius + StatorPMRadialWidth
     
-        # self.StatorPMThickness = StatorPMThickness
-        # self.StatorIronThickness = StatorIronThickness
-        # self.StatorIronOuterRadius = StatorInnerRadius + StatorPMRadialWidth - 1
+        self.StatorPMThickness = StatorPMThickness
+        self.StatorIronThickness = StatorIronThickness
+        self.StatorIronOuterRadius = StatorInnerRadius + StatorPMRadialWidth - 1
 
-        # self.StatorPoleTeethAdditionLength = self.StatorPoleWidth*StatorPoleToothWidthArcRatio
-        # self.StatorPoleTeethAngle = StatorPoleTeethAngle
-        # self.StatorPoleTeethStartX = np.sqrt(self.StatorPMOuterRadius**2-(self.StatorPoleWidth/2)**2)
+        self.StatorPoleTeethAdditionLength = self.StatorPoleWidth*StatorPoleToothWidthArcRatio
+        self.StatorPoleTeethAngle = StatorPoleTeethAngle
+        self.StatorPoleTeethStartX = np.sqrt(self.StatorPMOuterRadius**2-(self.StatorPoleWidth/2)**2)
 
-        # self.WindingThickness = self.StatorPoleWidth/3
-        # self.WindingRadialLength = WindingRadialLength
-        # self.rpm = rpm
+        self.WindingThickness = self.StatorPoleWidth/3
+        self.WindingRadialLength = WindingRadialLength
+        self.rpm = rpm
 
-        # self.turnm = turnm
-        # self.turns = turns
-        # self.Im = Im
+        self.turnm = turnm
+        self.turns = turns
+        self.Im = Im
 
-        # self.NumPolePairs = NumPolePairs
-        # self.R_phase = R_phase
+        self.NumPolePairs = NumPolePairs
+        self.R_phase = R_phase
+"""
+    
+    def readparam(self,filename):
+
+	# # Save the dictionary to a JSON file
+	# with open("para.json", "w") as file:
+	# 	json.dump(params, file, indent=4)
+
+        with open(filename, "r") as file:
+		params = json.load(file)
+
+    

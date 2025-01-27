@@ -166,17 +166,18 @@ class AirgapFluxDensity:
         self.waveform_shift_superimposed[7*(length_flux_list //8):] = self.waveform_shifted[7*(length_flux_list //8):]
 
 
-        # Generate the list
-        angle_list = np.linspace(0, 360, total_points)
-        if (rotor_angle %90 ==0):
-            fig,ax=plt.subplots()
-            ax.plot( angle_list, self.waveform, 'b')
-            ax.plot( angle_list, self.waveform_shifted, 'r')
-            ax.plot( angle_list, self.waveform_shift_superimposed, 'grey')
-            ax.set_xlabel("Angle (degrees)")
-            ax.set_ylabel("B_air")
-            ax.grid(True)
-            plt.show()
+        # Plot the shifted&superimpoed airgap flux density
+        ## Generate the list
+        # angle_list = np.linspace(0, 360, total_points)
+        # if (rotor_angle % 360 ==0):
+        #     fig,ax=plt.subplots()
+        #     ax.plot( angle_list, self.waveform, 'b')
+        #     ax.plot( angle_list, self.waveform_shifted, 'r')
+        #     ax.plot( angle_list, self.waveform_shift_superimposed, 'grey')
+        #     ax.set_xlabel("Angle (degrees)")
+        #     ax.set_ylabel("B_air")
+        #     ax.grid(True)
+        #     plt.show()
 
 
 
