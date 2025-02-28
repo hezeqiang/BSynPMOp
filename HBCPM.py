@@ -5,10 +5,10 @@ import ansys.aedt.core.downloads as downloads
 import os,time,json
 import pyaedt
 from ansys.aedt.core.visualization.plot.pdf import AnsysReport
-from GeneratePhaseCoil import generate_three_phases
-from GeneratePhaseCoil import generate_two_phases
+from generat_phases_coils import generate_three_phases
+from generat_phases_coils import generate_two_phases
 
-class HBCPM_wrapper:
+class HBCPMWrapper:
 
     def __init__(self,default_json_file_name=None):    
         
@@ -3343,15 +3343,12 @@ class HBCPM_wrapper:
                 ): "HysteresisLosses (Core)",
             }
 
-
     def generate_mesh_export(self):
         #################################################################
         # Generate mesh and export mesh to file
 
         self.oDesign.GenerateMesh(self.setup_name)
         self.oDesign.ExportMeshStats(self.setup_name,"All",self.project_path+"/"+"meshstats.ms")
-
-
 
     def analyze_torque(self, Im, Is_a=0, Is_b=0):
         #################################################################
@@ -3423,7 +3420,6 @@ class HBCPM_wrapper:
             self.HBCPM.post.export_report_to_file(output_dir=self.project_path+"/"+"torque report", 
                                         plot_name=v, 
                                         extension=".csv")
-
 
     def analyze_force(self, Im=0, Is_a=1, Is_b=1):
         #################################################################
