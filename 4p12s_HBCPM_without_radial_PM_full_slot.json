@@ -23,7 +23,7 @@
     "StatorPoleTeethAngle": 45,
     "WindingRadialLength": 13.3,
     "SuspensionWindingFullSlot": true,
-    "rpm": 3000,
+    "Velocity_rpm": 3000,
     "turnm": 90,
     "turns": 100,
     "Im": 2,

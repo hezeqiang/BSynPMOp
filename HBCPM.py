@@ -5,16 +5,12 @@ import ansys.aedt.core.downloads as downloads
 import os,time,json
 import pyaedt
 from ansys.aedt.core.visualization.plot.pdf import AnsysReport
-from HBCPM import HBCPMConcentratedWindingParameters
 from GeneratePhaseCoil import generate_three_phases
 from GeneratePhaseCoil import generate_two_phases
 
-
-
 class HBCPM_wrapper:
 
-    def __init__(self,params=None):
-        
+    def __init__(self,default_json_file_name=None):    
         
         self.defaults_para = {
     
@@ -51,10 +47,10 @@ class HBCPM_wrapper:
             "WindingRadialLength": 13.3,
             "SuspensionWindingFullSlot": True,
 
-            "rpm": 3000,
+            "Velocity_rpm": 3000,
             "turnm": 90,
             "turns": 100,
-            "Im": 2,
+            "Im": 0,
             "R_phase": 0.6,
 
             "Is_a":0,
@@ -67,14 +63,19 @@ class HBCPM_wrapper:
             "Createsetup":True,
             "Postprocessing":True,
             "BuildInOptimization":False,
-
+            
         }
-        
+
+        if default_json_file_name is not None:
+            self.json_file_name = default_json_file_name[:-5]
+
+            with open(default_json_file_name, "r") as file:
+                default_read_params = json.load(file)
+
+            if default_read_params is not None:
+                self.defaults_para.update(default_read_params)      
+
         self.params={}
-
-        if params is not None:
-            self.defaults_para.update(params)
-
         self.params.update(self.defaults_para)
         # # Dynamically set attributes
         # for key, value in defaults.items():
@@ -82,18 +83,19 @@ class HBCPM_wrapper:
 
         self.updata_params()
 
-    def read_params(self, file_name):
-        # Save the dictionary to a JSON file
-        # with open("para.json", "w") as file:
-        #     json.dump(params, file, indent=4)
+    def read_params(self,json_file_name):
 
-        self.file_name = file_name[:-5]
+        self.json_file_name = json_file_name[:-5]
 
-        with open(file_name, "r") as file:
+        with open(json_file_name, "r") as file:
             read_params = json.load(file)
         
         if read_params is not None:
             self.params.update(read_params)
+
+        # Save the dictionary to a JSON file
+        # with open("para.json", "w") as file:
+        #     json.dump(self.params, file, indent=4)
 
         self.updata_params()
 
@@ -145,7 +147,7 @@ class HBCPM_wrapper:
         self.SusWindLength = (2* np.pi * (self.StatorOuterRadius-self.StatorYokeWidth/2)/self.StatorPoleNumber-self.StatorPoleWidth)*0.72
         self.SuspensionWindingFullSlot = self.params["SuspensionWindingFullSlot"]
 
-        self.rpm = self.params["rpm"]
+        self.Velocity_rpm = self.params["Velocity_rpm"]
 
         self.turnm = self.params["turnm"]
         self.turns = self.params["turns"]
@@ -203,7 +205,7 @@ class HBCPM_wrapper:
 
         self.WindingThickness = self.StatorPoleWidth/3
         self.WindingRadialLength = WindingRadialLength
-        self.rpm = rpm
+        self.Velocity_rpm = Velocity_rpm
 
         self.turnm = turnm
         self.turns = turns
@@ -213,255 +215,282 @@ class HBCPM_wrapper:
         self.R_phase = R_phase
         """
 
-	# HBCPMInstance=BuildHBCPM(params,filename[:-5])
-    def BuildHBCPM(self,file_path):
-        # Launch AEDT
-        AedtVersion = "2024.1"  # Replace with your installed AEDT version
-        ProjectFullName = pyaedt.generate_unique_project_name()
-        ProjectName=os.path.basename(ProjectFullName)
-        print(ProjectName+"**************************")
-
-        project_path="C:/he/HBCPM/"+file_path+ProjectName
-        project_path = os.path.splitext(project_path)[0]  # This removes the file extension
-
-        # build the dir
-        try:
-            os.makedirs(project_path, exist_ok=True)  
-            # 'exist_ok=True' prevents error if the directory exists
-        except Exception as e:
-            print(f"An error occurred: {e}")
-
-        DesignName = "HBCPM"
-        desktop = Desktop(version=AedtVersion,new_desktop=True, non_graphical=False, close_on_exit=True)
-        # print(desktop.odesktop)
-
-        HBCPM = Maxwell3d(
-                        design=DesignName,
-                        solution_type="",
-                        version=AedtVersion,
-                        new_desktop=True, 
-                        non_graphical=False, 
-                        close_on_exit=True)
-
-        HBCPMSimuPara = self.params
-
-        HBCPM.solution_type = HBCPM.SOLUTIONS.Maxwell3d.Transient
-
-        oProject =desktop.odesktop.GetActiveProject()
-        oProject.Rename(project_path+"/"+ProjectName, True)
-        # "C:/he/HBCPM/HBCPMProject.aedt"
-
-        oDesign = oProject.GetActiveDesign()
-
-        oEditor = oDesign.SetActiveEditor("3D Modeler")
-
-        print(oDesign)
-        print(oProject)
-        print(oEditor)
-
-        # Define variables and expressions in a dictionary
-        if (HBCPMSimuPara.StatorPoleNumber / HBCPMSimuPara.NumPolePairs == 3):
-            variables = {
-                "RadialPMNumber":str(HBCPMSimuPara.NumPolePairs),
-                "StatorPoleNumber":str(HBCPMSimuPara.StatorPoleNumber),
-                "RadialPMAngle": str(HBCPMSimuPara.RadialPMAngle)+"deg",
-
-                "RotorInnerRadius": str(HBCPMSimuPara.RotorInnerRadius)+"mm",
-                "RotorCenterThickness": str(HBCPMSimuPara.RotorCenterThickness)+"mm",
-                "RotorOuterRadius": str(HBCPMSimuPara.RotorOuterRadius)+"mm",
-                "RadialPMThickness": str(HBCPMSimuPara.RadialPMThickness)+"mm",
-                "RotorPMAxialThickness": str(HBCPMSimuPara.RotorPMAxialThickness)+"mm",
-
-                "RotorIronOuterRadius": str(HBCPMSimuPara.RotorIronOuterRadius)+"mm",
-                "RotorIronThickness": str(HBCPMSimuPara.RotorIronThickness)+"mm",
-                
-                "RotorPMAxialOuterRadius": str(HBCPMSimuPara.RotorPMAxialOuterRadius)+"mm",
-                "RotorPMInnerRadius": str(HBCPMSimuPara.RotorPMInnerRadius)+"mm",
-
-                "StatorYokeWidth": str(HBCPMSimuPara.StatorYokeWidth)+"mm",
-                "StatorInnerRadius": str(HBCPMSimuPara.StatorInnerRadius)+"mm",
-                "StatorAxialThickness": str(HBCPMSimuPara.StatorAxialThickness)+"mm",
-                "StatorOuterRadius": str(HBCPMSimuPara.StatorOuterRadius)+"mm",
-
-                "StatorPoleWidth": str(HBCPMSimuPara.StatorPoleWidth)+"mm",
-                "StatorPMOuterRadius": str(HBCPMSimuPara.StatorPMOuterRadius)+"mm",
-                "StatorPMThickness": str(HBCPMSimuPara.StatorPMThickness)+"mm",
-                "StatorIronThickness": str(HBCPMSimuPara.StatorIronThickness)+"mm",
-                "StatorIronOuterRadius": str(HBCPMSimuPara.StatorIronOuterRadius)+"mm",
-                "RotorIronInnerRadius": str(HBCPMSimuPara.RotorIronInnerRadius)+"mm",
-
-                "StatorPoleTeethAdditionLength": str(HBCPMSimuPara.StatorPoleWidth/4)+"mm",
-                "StatorPoleTeethAngle":  str(HBCPMSimuPara.StatorPoleTeethAngle)+"deg",
-
-                "StatorPoleTeethStartX": str(HBCPMSimuPara.StatorPoleTeethStartX)+"mm",
+    def create_project(self,json_file_name=None):
+    	# HBCPMInstance=BuildHBCPM(params,filename[:-5])
+        # prokect_name is for opening a existing project, str
+        # example: C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_TZ8/Project_TZ8.aedt
 
 
-                "SusWindThickness": str(HBCPMSimuPara.SusWindThickness)+"mm",
-                "SusWindingLength": str(HBCPMSimuPara.SusWindLength)+"mm",
-                "WindingThickness": str(HBCPMSimuPara.WindingThickness)+"mm",
-                "WindingRadialLength": str(HBCPMSimuPara.WindingRadialLength)+"mm",
-                "rpm": str(HBCPMSimuPara.rpm),
-
-                "turnm": str(HBCPMSimuPara.turnm),
-                "turns": str(HBCPMSimuPara.turns),
-                "Im": str(HBCPMSimuPara.Im)+"A",
-                "Is_a": str(HBCPMSimuPara.Is_a)+"A",
-                "Is_b": str(HBCPMSimuPara.Is_b)+"A",
-
-                "ImA": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2)",
-                "ImB": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
-                "ImC": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
-
-                "NumPolePairs":str(HBCPMSimuPara.NumPolePairs),
-
-                "R_phase":str(HBCPMSimuPara.R_phase)+"Ohm"
-            }
+            if json_file_name is not None:
+                self.read_params(json_file_name)
 
 
-        if (HBCPMSimuPara.StatorPoleNumber / HBCPMSimuPara.NumPolePairs == 1.5):
-            variables = {
-                "RadialPMNumber":str(HBCPMSimuPara.NumPolePairs),
-                "StatorPoleNumber":str(HBCPMSimuPara.StatorPoleNumber),
-                "RadialPMAngle": str(HBCPMSimuPara.RadialPMAngle)+"deg",
+            print("Parameters saved to Para.json successfully!")
+            # Launch AEDT
+            AedtVersion = "2024.1"  # Replace with your installed AEDT version
+            ProjectFullName = pyaedt.generate_unique_project_name()
+            self.ProjectName=os.path.basename(ProjectFullName)
+            print(self.ProjectName+"**************************")
 
-                "RotorInnerRadius": str(HBCPMSimuPara.RotorInnerRadius)+"mm",
-                "RotorCenterThickness": str(HBCPMSimuPara.RotorCenterThickness)+"mm",
-                "RotorOuterRadius": str(HBCPMSimuPara.RotorOuterRadius)+"mm",
-                "RadialPMThickness": str(HBCPMSimuPara.RadialPMThickness)+"mm",
-                "RotorPMAxialThickness": str(HBCPMSimuPara.RotorPMAxialThickness)+"mm",
-
-                "RotorIronOuterRadius": str(HBCPMSimuPara.RotorIronOuterRadius)+"mm",
-                "RotorIronThickness": str(HBCPMSimuPara.RotorIronThickness)+"mm",
-                
-                "RotorPMAxialOuterRadius": str(HBCPMSimuPara.RotorPMAxialOuterRadius)+"mm",
-                "RotorPMInnerRadius": str(HBCPMSimuPara.RotorPMInnerRadius)+"mm",
-
-                "StatorYokeWidth": str(HBCPMSimuPara.StatorYokeWidth)+"mm",
-                "StatorInnerRadius": str(HBCPMSimuPara.StatorInnerRadius)+"mm",
-                "StatorAxialThickness": str(HBCPMSimuPara.StatorAxialThickness)+"mm",
-                "StatorOuterRadius": str(HBCPMSimuPara.StatorOuterRadius)+"mm",
-
-                "StatorPoleWidth": str(HBCPMSimuPara.StatorPoleWidth)+"mm",
-                "StatorPMOuterRadius": str(HBCPMSimuPara.StatorPMOuterRadius)+"mm",
-                "StatorPMThickness": str(HBCPMSimuPara.StatorPMThickness)+"mm",
-                "StatorIronThickness": str(HBCPMSimuPara.StatorIronThickness)+"mm",
-                "StatorIronOuterRadius": str(HBCPMSimuPara.StatorIronOuterRadius)+"mm",
-                "RotorIronInnerRadius": str(HBCPMSimuPara.RotorIronInnerRadius)+"mm",
-
-                "StatorPoleTeethAdditionLength": str(HBCPMSimuPara.StatorPoleWidth/4)+"mm",
-                "StatorPoleTeethAngle":  str(HBCPMSimuPara.StatorPoleTeethAngle)+"deg",
-
-                "StatorPoleTeethStartX": str(HBCPMSimuPara.StatorPoleTeethStartX)+"mm",
+            self.project_path="C:/he/HBCPM/"+json_file_name[:-5]+self.ProjectName
+            self.project_path = os.path.splitext(self.project_path)[0]  # This removes the file extension
+            # example:self.project_path ="C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_TZ8"
 
 
-                "SusWindThickness": str(HBCPMSimuPara.SusWindThickness)+"mm",
-                "SusWindingLength": str(HBCPMSimuPara.SusWindLength)+"mm",
-                "WindingThickness": str(HBCPMSimuPara.WindingThickness)+"mm",
-                "WindingRadialLength": str(HBCPMSimuPara.WindingRadialLength)+"mm",
-                "rpm": str(HBCPMSimuPara.rpm),
+            print(self.params)
+            # Save the dictionary as a JSON file
+            with open(self.project_path+"/"+"Para.json", "w") as json_file:
+                json.dump(self.params, json_file, indent=4)
 
-                "turnm": str(HBCPMSimuPara.turnm),
-                "turns": str(HBCPMSimuPara.turns),
-                "Im": str(HBCPMSimuPara.Im)+"A",
-                "Is_a": str(HBCPMSimuPara.Is_a)+"A",
-                "Is_b": str(HBCPMSimuPara.Is_b)+"A",
-
-                "ImA": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2)",
-                "ImB": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
-                "ImC": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
-
-                "NumPolePairs":str(HBCPMSimuPara.NumPolePairs),
-
-                "R_phase":str(HBCPMSimuPara.R_phase)+"Ohm"
-            }
+            # build the dir
+            try:
+                os.makedirs(self.project_path, exist_ok=True)  
+                # 'exist_ok=True' prevents error if the directory exists
+            except Exception as e:
+                print(f"An error occurred: {e}")
 
 
-
-        # Save the dictionary as a JSON file
-        with open("Para.json", "w") as json_file:
-            json.dump(variables, json_file, indent=4)
-
-        print("Parameters saved to Para.json successfully!")
-
-        # This call returns the VariableManager class
-        # Iterate through the dictionary and set each variable
-        for var_name, expression in variables.items():
-            HBCPM.variable_manager.set_variable(var_name, expression=expression)
-
-        # Define new materials
-        # Load from JSON file
-        with open('JFE_Steel_35JNE300_lamination_data.json', 'r') as f:
-            JFE_Steel_35JNE300_lamination_data = json.load(f)
+            try:
+                os.makedirs(self.project_path+"/"+"torque report", exist_ok=True)  
+                    # 'exist_ok=True' prevents error if the directory exists
+            except Exception as e:
+                print(f"An error occurred when create torque report: {e}")
 
 
-        oDefinitionManager = oProject.GetDefinitionManager()
+            try:
+                os.makedirs(self.project_path+"/"+"force report", exist_ok=True)  
+                    # 'exist_ok=True' prevents error if the directory exists
+            except Exception as e:
+                print(f"An error occurred when create force report: {e}")
 
-        oDefinitionManager.AddMaterial(
-            [
-                "NAME:TDK_NEOREC40TH_60cel_Radial",
-                "CoordinateSystemType:=", "Cylindrical",
-                "BulkOrSurfaceType:="	, 1,
+            self.DesignName = "HBCPM"
+            self.desktop = Desktop(version=AedtVersion,new_desktop=True, non_graphical=False, close_on_exit=True)
+            # print(desktop.odesktop)
+
+            self.HBCPM = Maxwell3d(
+                            design=self.DesignName,
+                            solution_type="",
+                            version=AedtVersion,
+                            new_desktop=True, 
+                            non_graphical=False, 
+                            close_on_exit=True)
+
+            self.HBCPM.solution_type = self.HBCPM.SOLUTIONS.Maxwell3d.Transient
+
+            self.oProject =self.desktop.odesktop.GetActiveProject()
+            self.oProject.Rename(self.project_path+"/"+self.ProjectName, True)
+            # "C:/he/HBCPM/HBCPMProject.aedt"
+
+            self.oDesign = self.oProject.GetActiveDesign()
+
+            oEditor = self.oDesign.SetActiveEditor("3D Modeler")
+
+            print(self.oDesign)
+            print(self.oProject)
+            print(oEditor)
+
+            # Define variables and expressions in a dictionary
+            if (self.StatorPoleNumber / self.NumPolePairs == 3):
+                variables = {
+                    "RadialPMNumber":str(self.NumPolePairs),
+                    "StatorPoleNumber":str(self.StatorPoleNumber),
+                    "RadialPMAngle": str(self.RadialPMAngle)+"deg",
+
+                    "RotorInnerRadius": str(self.RotorInnerRadius)+"mm",
+                    "RotorCenterThickness": str(self.RotorCenterThickness)+"mm",
+                    "RotorOuterRadius": str(self.RotorOuterRadius)+"mm",
+                    "RadialPMThickness": str(self.RadialPMThickness)+"mm",
+                    "RotorPMAxialThickness": str(self.RotorPMAxialThickness)+"mm",
+
+                    "RotorIronOuterRadius": str(self.RotorIronOuterRadius)+"mm",
+                    "RotorIronThickness": str(self.RotorIronThickness)+"mm",
+                    
+                    "RotorPMAxialOuterRadius": str(self.RotorPMAxialOuterRadius)+"mm",
+                    "RotorPMInnerRadius": str(self.RotorPMInnerRadius)+"mm",
+
+                    "StatorYokeWidth": str(self.StatorYokeWidth)+"mm",
+                    "StatorInnerRadius": str(self.StatorInnerRadius)+"mm",
+                    "StatorAxialThickness": str(self.StatorAxialThickness)+"mm",
+                    "StatorOuterRadius": str(self.StatorOuterRadius)+"mm",
+
+                    "StatorPoleWidth": str(self.StatorPoleWidth)+"mm",
+                    "StatorPMOuterRadius": str(self.StatorPMOuterRadius)+"mm",
+                    "StatorPMThickness": str(self.StatorPMThickness)+"mm",
+                    "StatorIronThickness": str(self.StatorIronThickness)+"mm",
+                    "StatorIronOuterRadius": str(self.StatorIronOuterRadius)+"mm",
+                    "RotorIronInnerRadius": str(self.RotorIronInnerRadius)+"mm",
+
+                    "StatorPoleTeethAdditionLength": str(self.StatorPoleWidth/4)+"mm",
+                    "StatorPoleTeethAngle":  str(self.StatorPoleTeethAngle)+"deg",
+
+                    "StatorPoleTeethStartX": str(self.StatorPoleTeethStartX)+"mm",
+
+
+                    "SusWindThickness": str(self.SusWindThickness)+"mm",
+                    "SusWindingLength": str(self.SusWindLength)+"mm",
+                    "WindingThickness": str(self.WindingThickness)+"mm",
+                    "WindingRadialLength": str(self.WindingRadialLength)+"mm",
+                    "Velocity_rpm": str(self.Velocity_rpm),
+
+                    "turnm": str(self.turnm),
+                    "turns": str(self.turns),
+                    "Im": str(self.Im)+"A",
+                    "Is_a": str(self.Is_a)+"A",
+                    "Is_b": str(self.Is_b)+"A",
+
+                    "ImA": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2)",
+                    "ImB": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
+                    "ImC": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
+
+                    "NumPolePairs":str(self.NumPolePairs),
+
+                    "R_phase":str(self.R_phase)+"Ohm",
+                }
+
+
+            if (self.StatorPoleNumber / self.NumPolePairs == 1.5):
+                variables = {
+                    "RadialPMNumber":str(self.NumPolePairs),
+                    "StatorPoleNumber":str(self.StatorPoleNumber),
+                    "RadialPMAngle": str(self.RadialPMAngle)+"deg",
+
+                    "RotorInnerRadius": str(self.RotorInnerRadius)+"mm",
+                    "RotorCenterThickness": str(self.RotorCenterThickness)+"mm",
+                    "RotorOuterRadius": str(self.RotorOuterRadius)+"mm",
+                    "RadialPMThickness": str(self.RadialPMThickness)+"mm",
+                    "RotorPMAxialThickness": str(self.RotorPMAxialThickness)+"mm",
+
+                    "RotorIronOuterRadius": str(self.RotorIronOuterRadius)+"mm",
+                    "RotorIronThickness": str(self.RotorIronThickness)+"mm",
+                    
+                    "RotorPMAxialOuterRadius": str(self.RotorPMAxialOuterRadius)+"mm",
+                    "RotorPMInnerRadius": str(self.RotorPMInnerRadius)+"mm",
+
+                    "StatorYokeWidth": str(self.StatorYokeWidth)+"mm",
+                    "StatorInnerRadius": str(self.StatorInnerRadius)+"mm",
+                    "StatorAxialThickness": str(self.StatorAxialThickness)+"mm",
+                    "StatorOuterRadius": str(self.StatorOuterRadius)+"mm",
+
+                    "StatorPoleWidth": str(self.StatorPoleWidth)+"mm",
+                    "StatorPMOuterRadius": str(self.StatorPMOuterRadius)+"mm",
+                    "StatorPMThickness": str(self.StatorPMThickness)+"mm",
+                    "StatorIronThickness": str(self.StatorIronThickness)+"mm",
+                    "StatorIronOuterRadius": str(self.StatorIronOuterRadius)+"mm",
+                    "RotorIronInnerRadius": str(self.RotorIronInnerRadius)+"mm",
+
+                    "StatorPoleTeethAdditionLength": str(self.StatorPoleWidth/4)+"mm",
+                    "StatorPoleTeethAngle":  str(self.StatorPoleTeethAngle)+"deg",
+
+                    "StatorPoleTeethStartX": str(self.StatorPoleTeethStartX)+"mm",
+
+
+                    "SusWindThickness": str(self.SusWindThickness)+"mm",
+                    "SusWindingLength": str(self.SusWindLength)+"mm",
+                    "WindingThickness": str(self.WindingThickness)+"mm",
+                    "WindingRadialLength": str(self.WindingRadialLength)+"mm",
+                    "Velocity_rpm": str(self.Velocity_rpm),
+
+                    "turnm": str(self.turnm),
+                    "turns": str(self.turns),
+                    "Im": str(self.Im)+"A",
+                    "Is_a": str(self.Is_a)+"A",
+                    "Is_b": str(self.Is_b)+"A",
+
+                    "ImA": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2)",
+                    "ImB": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
+                    "ImC": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
+
+                    "NumPolePairs":str(self.NumPolePairs),
+
+                    "R_phase":str(self.R_phase)+"Ohm",
+
+                }
+
+            # # Save the dictionary as a JSON file
+            # with open("Para.json", "w") as json_file:
+            #     json.dump(variables, json_file, indent=4)
+
+            # print("Parameters saved to Para.json successfully!")
+
+            # This call returns the VariableManager class
+            # Iterate through the dictionary and set each variable
+            for var_name, expression in variables.items():
+                self.HBCPM.variable_manager.set_variable(var_name, expression=expression)
+
+            # Define new materials
+            # Load from JSON file
+            with open('JFE_Steel_35JNE300_lamination_data.json', 'r') as f:
+                JFE_Steel_35JNE300_lamination_data = json.load(f)
+
+
+            oDefinitionManager = self.oProject.GetDefinitionManager()
+
+            oDefinitionManager.AddMaterial(
                 [
-                    "NAME:PhysicsTypes",
-                    "set:="			, ["Electromagnetic"]
-                ],
-                "permeability:="	, "1.04035644080587",
-                "conductivity:="	, "769230.769",
-                [
-                    "NAME:magnetic_coercivity",
-                    "property_type:="	, "VectorProperty",
-                    "Magnitude:="		, "-956678.252234359A_per_meter",
-                    "DirComp1:="		, "1",
-                    "DirComp2:="		, "0",
-                    "DirComp3:="		, "0",
-                ]
-            ])
+                    "NAME:TDK_NEOREC40TH_60cel_Radial",
+                    "CoordinateSystemType:=", "Cylindrical",
+                    "BulkOrSurfaceType:="	, 1,
+                    [
+                        "NAME:PhysicsTypes",
+                        "set:="			, ["Electromagnetic"]
+                    ],
+                    "permeability:="	, "1.04035644080587",
+                    "conductivity:="	, "769230.769",
+                    [
+                        "NAME:magnetic_coercivity",
+                        "property_type:="	, "VectorProperty",
+                        "Magnitude:="		, "-956678.252234359A_per_meter",
+                        "DirComp1:="		, "1",
+                        "DirComp2:="		, "0",
+                        "DirComp3:="		, "0",
+                    ]
+                ])
 
-        oDefinitionManager.AddMaterial(
-            [
-                "NAME:TDK_NEOREC40TH_60cel_Down",
-                "CoordinateSystemType:=", "Cartesian",
-                "BulkOrSurfaceType:="	, 1,
+            oDefinitionManager.AddMaterial(
                 [
-                    "NAME:PhysicsTypes",
-                    "set:="			, ["Electromagnetic"]
-                ],
-                "permeability:="	, "1.04035644080587",
-                "conductivity:="	, "769230.769",
+                    "NAME:TDK_NEOREC40TH_60cel_Down",
+                    "CoordinateSystemType:=", "Cartesian",
+                    "BulkOrSurfaceType:="	, 1,
+                    [
+                        "NAME:PhysicsTypes",
+                        "set:="			, ["Electromagnetic"]
+                    ],
+                    "permeability:="	, "1.04035644080587",
+                    "conductivity:="	, "769230.769",
+                    [
+                        "NAME:magnetic_coercivity",
+                        "property_type:="	, "VectorProperty",
+                        "Magnitude:="		, "-956678.252234359A_per_meter",
+                        "DirComp1:="		, "0",
+                        "DirComp2:="		, "0",
+                        "DirComp3:="		, "-1"
+                    ]
+                ])
+
+            oDefinitionManager.AddMaterial(
                 [
-                    "NAME:magnetic_coercivity",
-                    "property_type:="	, "VectorProperty",
-                    "Magnitude:="		, "-956678.252234359A_per_meter",
-                    "DirComp1:="		, "0",
-                    "DirComp2:="		, "0",
-                    "DirComp3:="		, "-1"
-                ]
-            ])
+                    "NAME:TDK_NEOREC40TH_60cel_Up",
+                    "CoordinateSystemType:=", "Cartesian",
+                    "BulkOrSurfaceType:="	, 1,
+                    [
+                        "NAME:PhysicsTypes",
+                        "set:="			, ["Electromagnetic"]
+                    ],
+                    "permeability:="	, "1.04035644080587",
+                    "conductivity:="	, "769230.769",
+                    [
+                        "NAME:magnetic_coercivity",
+                        "property_type:="	, "VectorProperty",
+                        "Magnitude:="		, "-956678.252234359A_per_meter",
+                        "DirComp1:="		, "0",
+                        "DirComp2:="		, "0",
+                        "DirComp3:="		, "1"
+                    ]
+                ])
 
-        oDefinitionManager.AddMaterial(
-            [
-                "NAME:TDK_NEOREC40TH_60cel_Up",
-                "CoordinateSystemType:=", "Cartesian",
-                "BulkOrSurfaceType:="	, 1,
-                [
-                    "NAME:PhysicsTypes",
-                    "set:="			, ["Electromagnetic"]
-                ],
-                "permeability:="	, "1.04035644080587",
-                "conductivity:="	, "769230.769",
-                [
-                    "NAME:magnetic_coercivity",
-                    "property_type:="	, "VectorProperty",
-                    "Magnitude:="		, "-956678.252234359A_per_meter",
-                    "DirComp1:="		, "0",
-                    "DirComp2:="		, "0",
-                    "DirComp3:="		, "1"
-                ]
-            ])
+            oDefinitionManager.AddMaterial(JFE_Steel_35JNE300_lamination_data)
 
-        oDefinitionManager.AddMaterial(JFE_Steel_35JNE300_lamination_data)
-
-
+    def build_motor(self):
         # Create 3D model
         # define the object in Create, Duplicate function
         # the object is actually the name or namelist of the each instance
@@ -469,12 +498,12 @@ class HBCPM_wrapper:
         # Rotor main body
         ###################################################################################
 
-        if (HBCPMSimuPara.BuildMotor):
+        if (self.BuildMotor):
             print("BuildMotor")
 
-            oEditor = oDesign.SetActiveEditor("3D Modeler")
+            oEditor = self.oDesign.SetActiveEditor("3D Modeler")
 
-            Rotor = oEditor.CreateRectangle(
+            self.Rotor = oEditor.CreateRectangle(
                 [
                     "NAME:RectangleParameters",
                     "IsCovered:="		, True,
@@ -507,7 +536,7 @@ class HBCPM_wrapper:
             oEditor.SweepAroundAxis(
                 [
                     "NAME:Selections",
-                    "Selections:="		, Rotor,
+                    "Selections:="		, self.Rotor,
                     "NewPartsModelFlag:="	, "Model"
                 ], 
                 [
@@ -522,7 +551,7 @@ class HBCPM_wrapper:
                 ])
 
             # Rotor radial PM
-            if (HBCPMSimuPara.RadialPM == True):
+            if (self.RadialPM == True):
                 RotorRadialPM = oEditor.CreateRectangle(
                     [
                         "NAME:RectangleParameters",
@@ -624,13 +653,13 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            RotorRadialPMhalfList=[RotorRadialPM]
-            RotorRadialPMhalfList.extend(RotorRadialPMhalf)
+            self.RotorRadialPMhalfList=[RotorRadialPM]
+            self.RotorRadialPMhalfList.extend(RotorRadialPMhalf)
 
             oEditor.Unite(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, RotorRadialPMhalfList))
+                    "Selections:="		, ",".join(map(str, self.RotorRadialPMhalfList))
                 ], 
                 [
                     "NAME:UniteParameters",
@@ -660,15 +689,15 @@ class HBCPM_wrapper:
                 ])
 
             #  define all object of PM
-            RotorRadialPMList=[RotorRadialPM]
-            RotorRadialPMList.extend(RotorRadialPMDupt)
+            self.RotorRadialPMList=[RotorRadialPM]
+            self.RotorRadialPMList.extend(RotorRadialPMDupt)
             # print(RotorRadialPMList)
 
             oEditor.Subtract(
                 [
                     "NAME:Selections",
                     "Blank Parts:="		, "Rotor",
-                    "Tool Parts:="		, ",".join(map(str, RotorRadialPMList))
+                    "Tool Parts:="		, ",".join(map(str, self.RotorRadialPMList))
                 ], 
                 [
                     "NAME:SubtractParameters",
@@ -676,7 +705,7 @@ class HBCPM_wrapper:
                     "TurnOnNBodyBoolean:="	, True
                 ])
 
-            print("Create "+ Rotor + " successful")
+            print("Create "+ self.Rotor + " successful")
 
             # Rotor axial PM
             RotorAxialPM = oEditor.CreateRectangle(
@@ -749,9 +778,9 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            RotorAxialPMList=[RotorAxialPM]
+            self.RotorAxialPMList=[RotorAxialPM]
 
-            RotorAxialPMList.extend(RotorAxialPMDupt)
+            self.RotorAxialPMList.extend(RotorAxialPMDupt)
             # print(RotorAxialPMList)
 
             oEditor.ChangeProperty(
@@ -761,7 +790,7 @@ class HBCPM_wrapper:
                         "NAME:Geometry3DAttributeTab",
                         [
                             "NAME:PropServers", 
-                            RotorAxialPMList[1], 
+                            self.RotorAxialPMList[1], 
                         ],
                         [
                             "NAME:ChangedProps",
@@ -773,7 +802,7 @@ class HBCPM_wrapper:
                     ]
                 ])
 
-            print("Create "+ str(RotorAxialPMList) + " successful")
+            print("Create "+ str(self.RotorAxialPMList) + " successful")
 
             # Rotor axial Iron
             RotorAxialIron = oEditor.CreateRectangle(
@@ -846,10 +875,10 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            RotorAxialIronList=[RotorAxialIron]
-            RotorAxialIronList.extend(RotorAxialIronDupt)
+            self.RotorAxialIronList=[RotorAxialIron]
+            self.RotorAxialIronList.extend(RotorAxialIronDupt)
 
-            print("Create " + str(RotorAxialIronList) + " successful")
+            print("Create " + str(self.RotorAxialIronList) + " successful")
 
             ###################################################################################
 
@@ -924,9 +953,9 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            StatorAxialPMList=[StatorAxialPM]
+            self.StatorAxialPMList=[StatorAxialPM]
 
-            StatorAxialPMList.extend(StatorAxialPMDupt)
+            self.StatorAxialPMList.extend(StatorAxialPMDupt)
             # print(RotorAxialPMList)
 
             oEditor.ChangeProperty(
@@ -936,7 +965,7 @@ class HBCPM_wrapper:
                         "NAME:Geometry3DAttributeTab",
                         [
                             "NAME:PropServers", 
-                            StatorAxialPMList[1], 
+                            self.StatorAxialPMList[1], 
                         ],
                         [
                             "NAME:ChangedProps",
@@ -948,7 +977,7 @@ class HBCPM_wrapper:
                     ]
                 ])
 
-            print("Create "+ str(StatorAxialPMList) + " successful")
+            print("Create "+ str(self.StatorAxialPMList) + " successful")
 
 
             # Stator axial Iron
@@ -1022,8 +1051,8 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            StatorAxialIronList=[StatorAxialIron]
-            StatorAxialIronList.extend(StatorAxialIronDupt)
+            self.StatorAxialIronList=[StatorAxialIron]
+            self.StatorAxialIronList.extend(StatorAxialIronDupt)
 
             print("Create " + str(StatorAxialIron) + " successful")
 
@@ -1031,7 +1060,7 @@ class HBCPM_wrapper:
             # Create stator Pole and Yoke
 
             # Stator Yoke
-            Stator = oEditor.CreateRectangle(
+            self.Stator = oEditor.CreateRectangle(
                 [
                     "NAME:RectangleParameters",
                     "IsCovered:="		, True,
@@ -1064,7 +1093,7 @@ class HBCPM_wrapper:
             oEditor.SweepAroundAxis(
                 [
                     "NAME:Selections",
-                    "Selections:="		, Stator,
+                    "Selections:="		, self.Stator,
                     "NewPartsModelFlag:="	, "Model"
                 ], 
                 [
@@ -1078,7 +1107,7 @@ class HBCPM_wrapper:
                     "NumOfSegments:="	, "0"
                 ])
 
-            print("Create " + str(Stator) + " successful")
+            print("Create " + str(self.Stator) + " successful")
 
             # Stator Pole
             StatorPole = oEditor.CreateRectangle(
@@ -1153,14 +1182,14 @@ class HBCPM_wrapper:
                 ])
             # return StatorPolehalfDupt is a list
 
-            StatorPoleList=[StatorPole]
+            self.StatorPoleList=[StatorPole]
 
-            StatorPoleList.extend(StatorPolehalfDupt)
+            self.StatorPoleList.extend(StatorPolehalfDupt)
 
             oEditor.Unite(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, StatorPoleList))
+                    "Selections:="		, ",".join(map(str, self.StatorPoleList))
                 ], 
                 [
                     "NAME:UniteParameters",
@@ -1216,13 +1245,13 @@ class HBCPM_wrapper:
                     "NumOfSegments:="	, "0"
                 ])
 
-            StatorPoleIntersectorList=[StatorPole,StatorPoleIntersector]
+            self.StatorPoleIntersectorList=[StatorPole,StatorPoleIntersector]
             # print(StatorPoleIntersectorList)
 
             oEditor.Intersect(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, StatorPoleIntersectorList))
+                    "Selections:="		, ",".join(map(str, self.StatorPoleIntersectorList))
                 ], 
                 [
                     "NAME:IntersectParameters",
@@ -1459,12 +1488,12 @@ class HBCPM_wrapper:
                     "TranslateVectorZ:="	, "StatorPoleWidth/2"
                 ])
 
-            StatorToothList=[StatorTooth,StatorToothIntersector1,StatorToothIntersector2]
+            self.StatorToothList=[StatorTooth,StatorToothIntersector1,StatorToothIntersector2]
 
             oEditor.Intersect(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, StatorToothList))
+                    "Selections:="		, ",".join(map(str, self.StatorToothList))
                 ], 
                 [
                     "NAME:IntersectParameters",
@@ -1497,15 +1526,15 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            StatorToothUnionList = [StatorPole,StatorTooth]
-            StatorToothUnionList.extend(StatorToothDul)
+            self.StatorToothUnionList = [StatorPole,StatorTooth]
+            self.StatorToothUnionList.extend(StatorToothDul)
 
-            print(StatorToothUnionList)
+            print(self.StatorToothUnionList)
 
             oEditor.Unite(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, StatorToothUnionList))
+                    "Selections:="		, ",".join(map(str, self.StatorToothUnionList))
                 ], 
                 [
                     "NAME:UniteParameters",
@@ -1516,7 +1545,7 @@ class HBCPM_wrapper:
             StatorToothUnion = oEditor.DuplicateAroundAxis(
                 [
                     "NAME:Selections",
-                    "Selections:="		, StatorToothUnionList[0],
+                    "Selections:="		, self.StatorToothUnionList[0],
                     "NewPartsModelFlag:="	, "Model"
                 ], 
                 [
@@ -1534,13 +1563,13 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            StatorList=[Stator,StatorToothUnionList[0]]
-            StatorList.extend(StatorToothUnion)
+            self.StatorList=[self.Stator,self.StatorToothUnionList[0]]
+            self.StatorList.extend(StatorToothUnion)
 
             oEditor.Unite(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, StatorList))
+                    "Selections:="		, ",".join(map(str, self.StatorList))
                 ], 
                 [
                     "NAME:UniteParameters",
@@ -1548,7 +1577,7 @@ class HBCPM_wrapper:
                     "TurnOnNBodyBoolean:="	, True
                 ])
 
-            print("Create " + str(StatorList) + " successful")
+            print("Create " + str(self.StatorList) + " successful")
 
 
 
@@ -1678,15 +1707,15 @@ class HBCPM_wrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
-            ArmatureWindingList=[ArmatureWinding]
-            ArmatureWindingList.extend(ArmatureWindingDup)
+            self.ArmatureWindingList=[ArmatureWinding]
+            self.ArmatureWindingList.extend(ArmatureWindingDup)
 
-            print("Create " + str(ArmatureWindingList) + " successful")
+            print("Create " + str(self.ArmatureWindingList) + " successful")
 
-            ArmatureWindingSectionList= oEditor.Section(
+            self.ArmatureWindingSectionList= oEditor.Section(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, ArmatureWindingList)),
+                    "Selections:="		, ",".join(map(str, self.ArmatureWindingList)),
                     "NewPartsModelFlag:="	, "Model"
                 ], 
                 [
@@ -1698,10 +1727,10 @@ class HBCPM_wrapper:
 
             # print(ArmatureWindingSectionList)
 
-            ArmatureWindingSectionSeparateList = oEditor.SeparateBody(
+            self.ArmatureWindingSectionSeparateList = oEditor.SeparateBody(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, ArmatureWindingSectionList)),
+                    "Selections:="		, ",".join(map(str, self.ArmatureWindingSectionList)),
                     "NewPartsModelFlag:="	, "Model"
                 ], 
                 [
@@ -1709,19 +1738,19 @@ class HBCPM_wrapper:
                 ])
 
             # Create a new list with strings ending with "Separate1"
-            ArmatureWindingSectionDeleteList = [s for s in ArmatureWindingSectionSeparateList if s.endswith("Separate1")]
+            self.ArmatureWindingSectionDeleteList = [s for s in self.ArmatureWindingSectionSeparateList if s.endswith("Separate1")]
 
             # print(ArmatureWindingSectionDeleteList)
 
             oEditor.Delete(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, ArmatureWindingSectionDeleteList))
+                    "Selections:="		, ",".join(map(str, self.ArmatureWindingSectionDeleteList))
                 ])
 
             ##################################################################
             #Create Suspension Windings
-            SuspensionWindingsubtractor = oEditor.CreateRectangle(
+            self.SuspensionWindingsubtractor = oEditor.CreateRectangle(
                 [
                     "NAME:RectangleParameters",
                     "IsCovered:="		, True,
@@ -1785,7 +1814,7 @@ class HBCPM_wrapper:
                 [
                     "NAME:Selections",
                     "Blank Parts:="		, SuspensionWinding,
-                    "Tool Parts:="		, SuspensionWindingsubtractor
+                    "Tool Parts:="		, self.SuspensionWindingsubtractor
                 ], 
                 [
                     "NAME:SubtractParameters",
@@ -1860,7 +1889,7 @@ class HBCPM_wrapper:
                     "RotateAngle:="		, "-45deg"
                 ])
 
-            if(HBCPMSimuPara.SuspensionWindingFullSlot == False):
+            if(self.SuspensionWindingFullSlot == False):
                 oEditor.Rotate(
                     [
                         "NAME:Selections",
@@ -1927,15 +1956,15 @@ class HBCPM_wrapper:
                         "CreateGroupsForNewObjects:=", False
                     ])
 
-            SuspensionWindingList=[SuspensionWinding]
-            SuspensionWindingList.extend(SuspensionWindingDup)
+            self.SuspensionWindingList=[SuspensionWinding]
+            self.SuspensionWindingList.extend(SuspensionWindingDup)
 
-            print("Create " + str(SuspensionWindingList) + " successful")
+            print("Create " + str(self.SuspensionWindingList) + " successful")
 
-            SuspensionWindingSectionList= oEditor.Section(
+            self.SuspensionWindingSectionList= oEditor.Section(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, SuspensionWindingList)),
+                    "Selections:="		, ",".join(map(str, self.SuspensionWindingList)),
                     "NewPartsModelFlag:="	, "Model"
                 ], 
                 [
@@ -1944,13 +1973,13 @@ class HBCPM_wrapper:
                     "SectionPlane:="	, "ZX",
                     "SectionCrossObject:="	, False
                 ])
-
+            
             # print(ArmatureWindingSectionList)
 
-            SuspensionWindingSectionSeparateList = oEditor.SeparateBody(
+            self.SuspensionWindingSectionSeparateList = oEditor.SeparateBody(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, SuspensionWindingSectionList)),
+                    "Selections:="		, ",".join(map(str, self.SuspensionWindingSectionList)),
                     "NewPartsModelFlag:="	, "Model"
                 ], 
                 [
@@ -1958,20 +1987,20 @@ class HBCPM_wrapper:
                 ])
 
             # Create a new list with strings ending with "Separate1"
-            SuspensionWindingSectionDeleteList = [s for s in SuspensionWindingSectionSeparateList if s.endswith("Separate1")]
+            self.SuspensionWindingSectionDeleteList = [s for s in self.SuspensionWindingSectionSeparateList if s.endswith("Separate1")]
 
             # print(ArmatureWindingSectionDeleteList)
 
             oEditor.Delete(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, SuspensionWindingSectionDeleteList))
+                    "Selections:="		, ",".join(map(str, self.SuspensionWindingSectionDeleteList))
                 ])
 
             ################################################################
             # air boundry, band, air gap segment
 
-            Air = oEditor.CreateCylinder(
+            self.Air = oEditor.CreateCylinder(
                 [
                     "NAME:CylinderParameters",
                     "XCenter:="		, "0mm",
@@ -2001,7 +2030,7 @@ class HBCPM_wrapper:
                     "IsLightweight:="	, False
                 ])
 
-            Band = oEditor.CreateCylinder(
+            self.Band = oEditor.CreateCylinder(
                 [
                     "NAME:CylinderParameters",
                     "XCenter:="		, "0mm",
@@ -2157,7 +2186,7 @@ class HBCPM_wrapper:
                     "XCenter:="		, "0mm",
                     "YCenter:="		, "-12mm",
                     "ZCenter:="		, "0mm",
-                    "Radius:="		, "8*StatorInnerRadius/8+0*RotorOuterRadius/8",
+                    "Radius:="		, "8*StatorInnerRadius/8+0*RotorOuterRadius/8 - 0.1 mm",
                     "Height:="		, "24mm",
                     "WhichAxis:="		, "Y",
                     "NumSides:="		, "0"
@@ -2181,13 +2210,13 @@ class HBCPM_wrapper:
                     "IsLightweight:="	, False
                 ])
 
-            AirgapSubtractorList=[Airgap1,Airgap2,Airgap3,Airgap4,Airgap5]
+            self.AirgapSubtractorList=[Airgap1,Airgap2,Airgap3,Airgap4,Airgap5]
 
             oEditor.Subtract(
                 [
                     "NAME:Selections",
-                    "Blank Parts:="		, AirgapSubtractorList[4],
-                    "Tool Parts:="		, AirgapSubtractorList[3]
+                    "Blank Parts:="		, self.AirgapSubtractorList[4],
+                    "Tool Parts:="		, self.AirgapSubtractorList[3]
                 ], 
                 [
                     "NAME:SubtractParameters",
@@ -2198,8 +2227,8 @@ class HBCPM_wrapper:
             oEditor.Subtract(
                 [
                     "NAME:Selections",
-                    "Blank Parts:="		, AirgapSubtractorList[3],
-                    "Tool Parts:="		, AirgapSubtractorList[2]
+                    "Blank Parts:="		, self.AirgapSubtractorList[3],
+                    "Tool Parts:="		, self.AirgapSubtractorList[2]
                 ], 
                 [
                     "NAME:SubtractParameters",
@@ -2210,8 +2239,8 @@ class HBCPM_wrapper:
             oEditor.Subtract(
                 [
                     "NAME:Selections",
-                    "Blank Parts:="		, AirgapSubtractorList[1],
-                    "Tool Parts:="		, AirgapSubtractorList[0]
+                    "Blank Parts:="		, self.AirgapSubtractorList[1],
+                    "Tool Parts:="		, self.AirgapSubtractorList[0]
                 ], 
                 [
                     "NAME:SubtractParameters",
@@ -2219,22 +2248,22 @@ class HBCPM_wrapper:
                     "TurnOnNBodyBoolean:="	, True
                 ])
 
-            AirgapList=[AirgapSubtractorList[4],AirgapSubtractorList[3],AirgapSubtractorList[1]]
+            self.AirgapList=[self.AirgapSubtractorList[4],self.AirgapSubtractorList[3],self.AirgapSubtractorList[1]]
 
-            AirgapDeleteList=[AirgapSubtractorList[2],AirgapSubtractorList[0]]
+            self.AirgapDeleteList=[self.AirgapSubtractorList[2],self.AirgapSubtractorList[0]]
 
             oEditor.Delete(
                 [
                     "NAME:Selections",
-                    "Selections:="		, ",".join(map(str, AirgapDeleteList))
+                    "Selections:="		, ",".join(map(str, self.AirgapDeleteList))
                 ])
 
-            print("Create " + str(AirgapList) + " successful")
+            print("Create " + str(self.AirgapList) + " successful")
 
 
             # Create lines for field analysis
-            oEditor = oDesign.SetActiveEditor("3D Modeler")
-            AirgapCircleSweep=oEditor.CreatePolyline(
+            oEditor = self.oDesign.SetActiveEditor("3D Modeler")
+            self.AirgapCircleSweep=oEditor.CreatePolyline(
                 [
                     "NAME:PolylineParameters",
                     "IsPolylineCovered:="	, True,
@@ -2414,17 +2443,19 @@ class HBCPM_wrapper:
             "CreateGroupsForNewObjects:=", False
         ])
 
-            AirgapAxialSweepList=[AirgapAxialSweep]
-            AirgapAxialSweepList.extend(AirgapAxialSweepDup)
+            self.AirgapAxialSweepList=[AirgapAxialSweep]
+            self.AirgapAxialSweepList.extend(AirgapAxialSweepDup)
 
-            desktop.save_project()
+            self.HBCPM.save_project()
+
+    def mesh(self):
         ##################################################### 
         # Mesh Operation
 
-        if (HBCPMSimuPara.CreateMesh):
+        if (self.CreateMesh):
             print("CreateMesh")
 
-            oModule = oDesign.GetModule("MeshSetup")
+            oModule = self.oDesign.GetModule("MeshSetup")
 
             oModule.InitialMeshSettings(
                 [
@@ -2432,7 +2463,7 @@ class HBCPM_wrapper:
                     [
                         "NAME:GlobalSurfApproximation",
                         "CurvedSurfaceApproxChoice:=", "UseSlider",
-                        "SliderMeshSettings:="	, 8
+                        "SliderMeshSettings:="	, 7
                     ],
                     [
                         "NAME:GlobalCurvilinear",
@@ -2442,7 +2473,7 @@ class HBCPM_wrapper:
                         "NAME:GlobalModelRes",
                         "UseAutoLength:="	, True
                     ],
-                    "MeshMethod:="		, "Auto",
+                    "MeshMethod:="		, "AnsoftTAU",
                     "UseLegacyFaceterForTauVolumeMesh:=", False,
                     "DynamicSurfaceResolution:=", False,
                     "UseFlexMeshingForTAUvolumeMesh:=", False,
@@ -2450,11 +2481,11 @@ class HBCPM_wrapper:
                     "AllowPhiForLayeredGeometry:=", False
                 ])
 
-            TotalPMList = RotorRadialPMList+RotorAxialPMList+StatorAxialPMList
-            TotalIronList = RotorAxialIronList+StatorAxialIronList
+            self.TotalPMList = self.RotorRadialPMList+self.RotorAxialPMList+self.StatorAxialPMList
+            self.TotalIronList = self.RotorAxialIronList+self.StatorAxialIronList
 
-            SteelList=[Rotor]
-            SteelList.append(Stator)
+            self.SteelList=[self.Rotor]
+            self.SteelList.append(self.Stator)
 
             # HBCPM.mesh.assign_length_mesh(assignment=AirgapList, maximum_length=0.7, maximum_elements=None, name="Airgap")
 
@@ -2475,11 +2506,11 @@ class HBCPM_wrapper:
                     "NAME:Airgap",
                     "RefineInside:="	, False,
                     "Enabled:="		, True,
-                    "Objects:="		, AirgapList,
+                    "Objects:="		, self.AirgapList,
                     "RestrictElem:="	, False,
                     "NumMaxElem:="		, "1000",
                     "RestrictLength:="	, True,
-                    "MaxLength:="		, "0.8mm"
+                    "MaxLength:="		, "1mm"
                 ])
 
             oModule.AssignLengthOp(
@@ -2487,7 +2518,7 @@ class HBCPM_wrapper:
                     "NAME:Winding",
                     "RefineInside:="	, True,
                     "Enabled:="		, True,
-                    "Objects:="		, ArmatureWindingList,
+                    "Objects:="		, self.ArmatureWindingList,
                     "RestrictElem:="	, False,
                     "NumMaxElem:="		, "1000",
                     "RestrictLength:="	, True,
@@ -2499,11 +2530,11 @@ class HBCPM_wrapper:
                     "NAME:PM",
                     "RefineInside:="	, True,
                     "Enabled:="		, True,
-                    "Objects:="		, TotalPMList,
+                    "Objects:="		, self.TotalPMList,
                     "RestrictElem:="	, False,
                     "NumMaxElem:="		, "1000",
                     "RestrictLength:="	, True,
-                    "MaxLength:="		, "1mm"
+                    "MaxLength:="		, "1.2mm"
                 ])
 
             oModule.AssignLengthOp(
@@ -2511,11 +2542,11 @@ class HBCPM_wrapper:
                     "NAME:Iron",
                     "RefineInside:="	, True,
                     "Enabled:="		, True,
-                    "Objects:="		, TotalIronList,
+                    "Objects:="		, self.TotalIronList,
                     "RestrictElem:="	, False,
                     "NumMaxElem:="		, "1000",
                     "RestrictLength:="	, True,
-                    "MaxLength:="		, "1mm"
+                    "MaxLength:="		, "1.5mm"
                 ])
 
             oModule.AssignLengthOp(
@@ -2523,118 +2554,144 @@ class HBCPM_wrapper:
                     "NAME:Steel",
                     "RefineInside:="	, True,
                     "Enabled:="		, True,
-                    "Objects:="		, SteelList,
+                    "Objects:="		, self.SteelList,
                     "RestrictElem:="	, False,
                     "NumMaxElem:="		, "1000",
                     "RestrictLength:="	, True,
                     "MaxLength:="		, "3mm"
                 ])
 
+    def create_relative_coordinate_system(self):
+        #############################################################
+        # Create relative coordinate system
 
+        oEditor = self.oDesign.SetActiveEditor("3D Modeler")
+        oEditor.CreateRelativeCS(
+            [
+                "NAME:RelativeCSParameters",
+                "Mode:="		, "Axis/Position",
+                "OriginX:="		, "0mm",
+                "OriginY:="		, "0mm",
+                "OriginZ:="		, "0mm",
+                "XAxisXvec:="		, "0mm",
+                "XAxisYvec:="		, "0mm",
+                "XAxisZvec:="		, "1mm",
+                "YAxisXvec:="		, "1mm",
+                "YAxisYvec:="		, "0mm",
+                "YAxisZvec:="		, "0mm"
+            ], 
+            [
+                "NAME:Attributes",
+                "Name:="		, "RelativeCoordSyst"
+            ])
+        
+        print("Create " + str("RelativeCoordSyst") + " successful")
+        self.HBCPM.save_project()
+
+    def assign_boudry_band(self):
+        #############################################################
+        # assign boudry and band
+
+        if (self.AssignBoundryBand):  
+            print("AssignBoundryBand")
+                
+            # Setup boundry and band
+            self.AirSurfaceList = self.HBCPM.modeler.get_object_faces(assignment=self.Air)
+
+            print(self.AirSurfaceList)
+
+            oModule = self.oDesign.GetModule("BoundarySetup")
+
+            oModule.AssignZeroTangentialHField(
+                [
+                    "NAME:ZeroTangentialHField",
+                    "Faces:="		, self.AirSurfaceList
+                ])
+
+            self.HBCPM.assign_rotate_motion(
+                assignment=self.Band,
+                coordinate_system = "RelativeCoordSyst",
+                axis="Z",
+                positive_movement=True,
+                start_position="0deg",
+                angular_velocity=str(self.Velocity_rpm)+" rpm",
+            )
+
+            self.HBCPM.save_project()
+
+    def assign_force_torque(self):
             ###################################################################
             # Set force and torque
 
-            oModule = oDesign.GetModule("MaxwellParameterSetup")
+            oModule = self.oDesign.GetModule("MaxwellParameterSetup")
 
-            RotorList=RotorAxialIronList+RotorRadialPMList+RotorAxialPMList
-            RotorList.append(Rotor)
+            self.RotorList=self.RotorAxialIronList+self.RotorRadialPMList+self.RotorAxialPMList
+            self.RotorList.append(self.Rotor)
 
             oModule.AssignForce(
                 [
                     "NAME:Force",
-                    "Reference CS:="	, "Global",
+                    "Reference CS:="	, "RelativeCoordSyst",
                     "Is Virtual:="		, True,
-                    "Objects:="		, RotorList
+                    "Objects:="		, self.RotorList
                 ])
             oModule.AssignTorque(
                 [
                     "NAME:TorqueRotation",
                     "Is Virtual:="		, True,
-                    "Coordinate System:="	, "Global",
-                    "Axis:="		, "Y",
+                    "Coordinate System:="	, "RelativeCoordSyst",
+                    "Axis:="		, "Z",
                     "Is Positive:="		, True,
-                    "Objects:="		, RotorList
+                    "Objects:="		, self.RotorList
                 ])
             oModule.AssignTorque(
                 [
                     "NAME:TorqueTilt",
                     "Is Virtual:="		, True,
-                    "Coordinate System:="	, "Global",
+                    "Coordinate System:="	, "RelativeCoordSyst",
                     "Axis:="		, "X",
                     "Is Positive:="		, True,
-                    "Objects:="		, RotorList
+                    "Objects:="		, self.RotorList
                 ])
 
-        #############################################################
-        if (HBCPMSimuPara.AssignBoundryBand):  
-            print("AssignBoundryBand")
-                
-            # Setup boundry and band
-            AirSurfaceList = HBCPM.modeler.get_object_faces(assignment=Air)
-
-            print(AirSurfaceList)
-
-            oModule = oDesign.GetModule("BoundarySetup")
-
-            oModule.AssignZeroTangentialHField(
-                [
-                    "NAME:ZeroTangentialHField",
-                    "Faces:="		, AirSurfaceList
-                ])
-
-            HBCPM.assign_rotate_motion(
-                assignment=Band,
-                coordinate_system="Global",
-                axis="Y",
-                positive_movement=True,
-                start_position="0deg",
-                angular_velocity="3000rpm",
-            )
+    def create_excitation(self):
         ###################################################################
+        # Create excitation
 
-        if (HBCPMSimuPara.CreateExcitation):
+        if (self.CreateExcitation):
             print("CreateExcitation")
 
             # Winding configuration
-            oModule = oDesign.GetModule("BoundarySetup")
+            oModule =self.oDesign.GetModule("BoundarySetup")
 
             # print(ArmatureWindingSectionList)
 
             # Define the phase configurations
-            ArmaturePhases = generate_three_phases(HBCPMSimuPara.Armature_coil_number)
-
-            if(HBCPMSimuPara.SuspensionWindingFullSlot == False):
-                SuspensionPhases = generate_two_phases(4)
-            else:
-                SuspensionPhases = generate_two_phases(HBCPMSimuPara.Armature_coil_number)
+            self.ArmaturePhases = generate_three_phases(self.Armature_coil_number)
 
             # ArmaturePhases = [
             # 	{"name": "Phase_A", "current": "ImA", "group": ["A_1", "A_2", "A_3", "A_4"]},
             # 	{"name": "Phase_B", "current": "ImB", "group": ["B_1", "B_2", "B_3", "B_4"]},
             # 	{"name": "Phase_C", "current": "ImC", "group": ["C_1", "C_2", "C_3", "C_4"]},
             # ]
-
-            # SuspensionPhases [{'name': 'Phase_sa', 'current': 'Is_a', 'group': ['sa_1', 'sa_2']},
-            #                   {'name': 'Phase_sb', 'current': 'Is_b', 'group': ['sb_1', 'sb_2']}]
-            ArmaturePhasedivisor = len(ArmaturePhases) # 3
-            SuspensionPhasedivisor = len(SuspensionPhases) # 2
+            self.ArmaturePhasedivisor = len(self.ArmaturePhases) # 3
 
             # Process each phase
-            for phase_index, phase in enumerate(ArmaturePhases):
+            for phase_index, phase in enumerate(self.ArmaturePhases):
                 winding_group = phase["group"]
 
                 # Assign coils for the current phase
-                for index, element in enumerate(ArmatureWindingSectionList):
-                    if index % ArmaturePhasedivisor == phase_index:
-                        HBCPM.assign_coil(
-                            assignment=ArmatureWindingSectionList[index],
+                for index, element in enumerate(self.ArmatureWindingSectionList):
+                    if index % self.ArmaturePhasedivisor == phase_index:
+                        self.HBCPM.assign_coil(
+                            assignment=self.ArmatureWindingSectionList[index],
                             conductors_number="turnm",
                             polarity="Nagative",
-                            name=winding_group[int((index - phase_index) / ArmaturePhasedivisor)],
+                            name=winding_group[int((index - phase_index) / self.ArmaturePhasedivisor)],
                         )
 
                 # Assign the winding
-                HBCPM.assign_winding(
+                self.HBCPM.assign_winding(
                     assignment=None,
                     winding_type="Current",
                     is_solid=False,
@@ -2644,65 +2701,75 @@ class HBCPM_wrapper:
                 )
 
                 # Add winding coils
-                HBCPM.add_winding_coils(
+                self.HBCPM.add_winding_coils(
                     assignment=phase["name"], coils=winding_group
                 )
 
-                # Process each phase
-            
-            for phase_index, phase in enumerate(SuspensionPhases):
+            if(self.SuspensionWindingFullSlot == False):
+                self.SuspensionPhases = generate_two_phases(4)
+            else:
+                self.SuspensionPhases = generate_two_phases(self.Armature_coil_number)
+
+            # SuspensionPhases [{'name': 'Phase_sa', 'current': 'Is_a', 'group': ['sa_1', 'sa_2']},
+            #                   {'name': 'Phase_sb', 'current': 'Is_b', 'group': ['sb_1', 'sb_2']}]
+            self.SuspensionPhasedivisor = len(self.SuspensionPhases) # 2
+
+            for phase_index, phase in enumerate(self.SuspensionPhases):
                 winding_group = phase["group"]
                 winding_group_index=0
 
                 # Assign coils for the current phase
-                for index, element in enumerate(SuspensionWindingSectionList):
+                for index, element in enumerate(self.SuspensionWindingSectionList):
                     
-                    if(HBCPMSimuPara.SuspensionWindingFullSlot == False):
-                        if index % SuspensionPhasedivisor == phase_index:
-                            if index in (1, 2):
-                                HBCPM.assign_coil(
-                                    assignment=SuspensionWindingSectionList[index],
-                                    conductors_number="turns",
-                                    polarity="Positive",
-                                    name=winding_group[winding_group_index],
-                                )
-                            else:
-                                HBCPM.assign_coil(
-                                    assignment=SuspensionWindingSectionList[index],
+                    if(self.SuspensionWindingFullSlot == False):
+
+                        if (index+1) % self.SuspensionPhasedivisor == phase_index:
+                            if index in (0, 1):
+                                print(self.SuspensionWindingSectionList[index]+" Positive", winding_group[winding_group_index])
+                                self.HBCPM.assign_coil(
+                                    assignment=self.SuspensionWindingSectionList[index],
                                     conductors_number="turns",
                                     polarity="Nagative",
                                     name=winding_group[winding_group_index],
                                 )
-                                
+                            else:
+                                print(self.SuspensionWindingSectionList[index]+" Nagative", winding_group[winding_group_index])
+                                self.HBCPM.assign_coil(
+                                    assignment=self.SuspensionWindingSectionList[index],
+                                    conductors_number="turns",
+                                    polarity="Positive",
+                                    name=winding_group[winding_group_index],
+                                )
                             winding_group_index+=1
-                        
                     else: 
-
-                        if (((index-HBCPMSimuPara.StatorPoleNumber/2/2*float(phase_index)) % float(HBCPMSimuPara.StatorPoleNumber/2)) < float(HBCPMSimuPara.StatorPoleNumber/2/2)):
+            # SuspensionPhases [{'name': 'Phase_sa', 'current': 'Is_a', 'group': ['sa_1', 'sa_2',...'sa_6']},
+            #                   {'name': 'Phase_sb', 'current': 'Is_b', 'group': ['sb_1', 'sb_2',...'sb_6']}]
+                        if ((((index+3)-self.StatorPoleNumber/2/2*float(phase_index)) % float(self.StatorPoleNumber/2)) < float(self.StatorPoleNumber/2/2)):
                             print(index)
                             print("enter loop, winding_group_index+1 **************************")
 
 
-                            if index in range(int(HBCPMSimuPara.StatorPoleNumber/2/2), int(HBCPMSimuPara.StatorPoleNumber/2)+3):
+                            if index in range(0, int(self.StatorPoleNumber/2)):
                                 
-                                HBCPM.assign_coil(
-                                    assignment=SuspensionWindingSectionList[index],
-                                    conductors_number="turns",
-                                    polarity="Positive",
-                                    name=winding_group[winding_group_index],
-                                )
-                            else:
-                                HBCPM.assign_coil(
-                                    assignment=SuspensionWindingSectionList[index],
+                                self.HBCPM.assign_coil(
+                                    assignment=self.SuspensionWindingSectionList[index],
                                     conductors_number="turns",
                                     polarity="Nagative",
+                                    name=winding_group[winding_group_index],
+                                )
+
+                            else:
+                                self.HBCPM.assign_coil(
+                                    assignment=self.SuspensionWindingSectionList[index],
+                                    conductors_number="turns",
+                                    polarity="Positive",
                                     name=winding_group[winding_group_index],
                                 )
 
                             winding_group_index+=1
 
                 # Assign the winding
-                HBCPM.assign_winding(
+                self.HBCPM.assign_winding(
                     assignment=None,
                     winding_type="Current",
                     is_solid=False,
@@ -2712,46 +2779,81 @@ class HBCPM_wrapper:
                 )
 
                 # Add winding coils
-                HBCPM.add_winding_coils(
+                self.HBCPM.add_winding_coils(
                     assignment=phase["name"], coils=winding_group
                 )
 
             ################################################################
             # Turn core loss, inductance cal
-            HBCPM.set_core_losses(SteelList, core_loss_on_field=True)
+            self.HBCPM.set_core_losses(self.SteelList)
 
-            HBCPM.eddy_effects_on(SteelList)
+            # HBCPM.eddy_effects_on(RotorRadialPMList+RotorAxialPMList+StatorAxialPMList)
 
-            HBCPM.change_inductance_computation(
+            self.HBCPM.change_inductance_computation(
                 compute_transient_inductance=True, incremental_matrix=False
             )
 
+    def create_setup(self):
         #################################################################
 
-        if(HBCPMSimuPara.Createsetup):
+        if(self.Createsetup):
             print("Createsetup")
             # Setup generation
 
-            setup_name = "MySetupAuto"
-            setup = HBCPM.create_setup(name=setup_name)
-            setup.props["StopTime"] = str(60/HBCPMSimuPara.rpm/HBCPMSimuPara.NumPolePairs/2)+"s"
-            setup.props["TimeStep"] = str(60/HBCPMSimuPara.rpm/HBCPMSimuPara.NumPolePairs/2/10)+"s"
-            setup.props["SaveFieldsType"] = "None"
-            setup.props["OutputPerObjectCoreLoss"] = True
-            setup.props["OutputPerObjectSolidLoss"] = True
-            setup.props["OutputError"] = True
-            setup.update()
-            HBCPM.validate_simple()
+            # setup_name = setup_name
+            # setup = HBCPM.create_setup(name=setup_name)
+            # setup.props["StopTime"] = str(60/self.Velocity_rpm/self.NumPolePairs/2)+"s"
+            # setup.props["TimeStep"] = str(60/self.Velocity_rpm/self.NumPolePairs/2/10)+"s"
+            # setup.props["SaveFieldsType"] = "None"
+            # setup.props["OutputPerObjectCoreLoss"] = True
+            # setup.props["OutputPerObjectSolidLoss"] = True
+            # setup.props["OutputError"] = True
+            # setup.update()
 
+            self.setup_name="MySetupAuto"
+            oModule = self.oDesign.GetModule("AnalysisSetup")
+            oModule.InsertSetup("Transient", 
+                [
+                    "NAME:"+self.setup_name,
+                    "Enabled:="		, True,
+                    [
+                        "NAME:MeshLink",
+                        "ImportMesh:="		, False
+                    ],
+                    "NonlinearSolverResidual:=", "0.005",
+                    "ScalarPotential:="	, "Second Order",
+                    "SmoothBHCurve:="	, False,
+                    "StopTime:="		, str(60/self.Velocity_rpm/self.NumPolePairs/2)+"s",
+                    "TimeStep:="		, str(60/self.Velocity_rpm/self.NumPolePairs/2/10)+"s",
+                    "OutputError:="		, False,
+                    "OutputPerObjectCoreLoss:=", True,
+                    "OutputPerObjectSolidLoss:=", True,
+                    "UseControlProgram:="	, False,
+                    "ControlProgramName:="	, " ",
+                    "ControlProgramArg:="	, " ",
+                    "CallCtrlProgAfterLastStep:=", False,
+                    "FastReachSteadyState:=", False,
+                    "AutoDetectSteadyState:=", False,
+                    "IsGeneralTransient:="	, True,
+                    "IsHalfPeriodicTransient:=", False,
+                    "SaveFieldsType:="	, "None",
+                    "UseNonLinearIterNum:="	, False,
+                    "CacheSaveKind:="	, "Count",
+                    "NumberSolveSteps:="	, 1,
+                    "RangeStart:="		, "0s",
+                    "RangeEnd:="		, "0.1s"
+                ])
+            self.HBCPM.save_project()
+
+    def create_report(self):
         #################################################################
         # generate report
 
-        if(HBCPMSimuPara.Postprocessing):
+        if(self.Postprocessing):
             print("postprocessing")
 
-                
             # postprocessing
-            output_vars = {
+            self.output_vars = {
                 
                 "Current_A": "InputCurrent(Phase_A)",
                 "Current_B": "InputCurrent(Phase_B)",
@@ -2807,15 +2909,16 @@ class HBCPM_wrapper:
                 "U_q": "-2/3*(U_A*sin0 + U_B*sin1 + U_C*sin2)",   
             }
 
-            for k, v in output_vars.items():
-                HBCPM.create_output_variable(k, v)
+            for k, v in self.output_vars.items():
+                self.HBCPM.create_output_variable(k, v)
 
             # Single plot
-            post_params = {"TorqueRotation.Torque": "TorqueRotation",
+            self.post_params = {"TorqueRotation.Torque": "TorqueRotation",
                         "TorqueTilt.Torque": "TorqueTilt",}
 
             # multiple plot
-            post_params_multiplot = {  # reports
+            self.post_params_multiplot = {  
+            # reports
 
                 ("Force.Force_x","Force.Force_y","Force.Force_z"): "Force",
                 ("CoreLoss", "SolidLoss", "ArmatureOhmicLoss_DC"): "Losses",
@@ -2872,8 +2975,8 @@ class HBCPM_wrapper:
             }
 
             # generate single plot report
-            for k, v in post_params.items():
-                HBCPM.post.create_report(expressions=k, setup_sweep_name="",
+            for k, v in self.post_params.items():
+                self.HBCPM.post.create_report(expressions=k, setup_sweep_name="",
                                     domain="Sweep", variations=None,
                                     primary_sweep_variable="Time", secondary_sweep_variable=None,
                                     report_category=None, plot_type="Rectangular Plot",
@@ -2881,8 +2984,8 @@ class HBCPM_wrapper:
                                     polyline_points=1001, plot_name=v)
 
             # generate multi plot report
-            for k, v in post_params_multiplot.items():
-                HBCPM.post.create_report(expressions=list(k), setup_sweep_name="",
+            for k, v in self.post_params_multiplot.items():
+                self.HBCPM.post.create_report(expressions=list(k), setup_sweep_name="",
                                     domain="Sweep", variations=None,
                                     primary_sweep_variable="Time", secondary_sweep_variable=None,
                                     report_category=None, plot_type="Rectangular Plot",
@@ -2891,13 +2994,13 @@ class HBCPM_wrapper:
 
 
             # Create field report
-            oModule = oDesign.GetModule("FieldsReporter")
-            oModule.LoadNamedExpressions("C:\\he\\HBCPM\\cal.clc", "Fields", ["B_air", "Br", "Bt", "F_z", "F_x", "F_y"])
+            oModule = self.oDesign.GetModule("FieldsReporter")
+            oModule.LoadNamedExpressions("C:\\he\\HBCPM\\cal.clc", "Fields", ["B_air", "Br", "Bt"])
 
             oModule.CreateFieldPlot(
                 [
                     "NAME:XZ_Plane",
-                    "SolutionName:="	, "MySetupAuto : Transient",
+                    "SolutionName:="	, self.setup_name+" : Transient",
                     "UserSpecifyName:="	, 0,
                     "UserSpecifyFolder:="	, 0,
                     "QuantityName:="	, "Mag_B",
@@ -2934,7 +3037,7 @@ class HBCPM_wrapper:
             oModule.CreateFieldPlot(
                 [
                     "NAME:XY_Plane",
-                    "SolutionName:="	, "MySetupAuto : Transient",
+                    "SolutionName:="	, self.setup_name+" : Transient",
                     "UserSpecifyName:="	, 0,
                     "UserSpecifyFolder:="	, 0,
                     "QuantityName:="	, "Mag_B",
@@ -2968,10 +3071,10 @@ class HBCPM_wrapper:
                     "SurfaceOnly:="		, False
                 ], "Field")
 
-            oModule = oDesign.GetModule("ReportSetup")
-            oModule.CreateReport(AirgapCircleSweep, "Fields", "Rectangular Plot", "MySetupAuto : Transient", 
+            oModule = self.oDesign.GetModule("ReportSetup")
+            oModule.CreateReport(self.AirgapCircleSweep, "Fields", "Rectangular Plot", self.setup_name+" : Transient", 
             [
-                "Context:="		, AirgapCircleSweep,
+                "Context:="		, self.AirgapCircleSweep,
                 "PointCount:="		, 361
             ], 
             [
@@ -3006,7 +3109,7 @@ class HBCPM_wrapper:
                 "SusWindingLength:="	, ["Nominal"],
                 "WindingThickness:="	, ["Nominal"],
                 "WindingRadialLength:="	, ["Nominal"],
-                "rpm:="			, ["Nominal"],
+                "Velocity_rpm:="	    , ["Nominal"],
                 "turnm:="		, ["Nominal"],
                 "turns:="		, ["Nominal"],
                 "Im:="			, ["Nominal"],
@@ -3020,9 +3123,9 @@ class HBCPM_wrapper:
                 "Y Component:="		, ["B_air"]
             ])
 
-            oModule.CreateReport(AirgapAxialSweep, "Fields", "Rectangular Plot", "MySetupAuto : Transient", 
+            oModule.CreateReport(self.AirgapAxialSweepList[0], "Fields", "Rectangular Plot", self.setup_name+" : Transient", 
             [
-                "Context:="		, AirgapAxialSweep,
+                "Context:="		, self.AirgapAxialSweepList[0],
                 "PointCount:="		, 101
             ], 
             [
@@ -3057,7 +3160,7 @@ class HBCPM_wrapper:
                 "SusWindingLength:="	, ["Nominal"],
                 "WindingThickness:="	, ["Nominal"],
                 "WindingRadialLength:="	, ["Nominal"],
-                "rpm:="			, ["Nominal"],
+                "Velocity_rpm:="		, ["Nominal"],
                 "turnm:="		, ["Nominal"],
                 "turns:="		, ["Nominal"],
                 "Im:="			, ["Nominal"],
@@ -3070,35 +3173,344 @@ class HBCPM_wrapper:
                 "X Component:="		, "Distance",
                 "Y Component:="		, ["B_air"]
             ])
+            self.HBCPM.save_project()
+
+    def resume_project(self, project_name=None):
+
+        if project_name is not None:
+
+            AedtVersion = "2024.1"  # Replace with your installed AEDT version
+            print("Open project"+project_name)
+            self.project_path = os.path.dirname(project_name) 
+            # example: C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_TZ8
+            self.ProjectName=os.path.basename(project_name)
+            # example: Project_TZ8.aedt
+            print(self.ProjectName+"**************************")
+
+            try:
+                os.makedirs(self.project_path+"/"+"torque report", exist_ok=True)  
+                    # 'exist_ok=True' prevents error if the directory exists
+            except Exception as e:
+                print(f"An error occurred when create torque report: {e}")
+
+            try:
+                os.makedirs(self.project_path+"/"+"force report", exist_ok=True)  
+                    # 'exist_ok=True' prevents error if the directory exists
+            except Exception as e:
+                print(f"An error occurred when create force report: {e}")
+
+            self.desktop = Desktop(version=AedtVersion,new_desktop=True, non_graphical=False, close_on_exit=True)
+            # print(desktop.odesktop)
+
+            self.HBCPM = Maxwell3d(
+                            project=project_name,
+                            solution_type="",
+                            version=AedtVersion,
+                            new_desktop=True, 
+                            non_graphical=False, 
+                            close_on_exit=True)
+
+            self.DesignName = self.HBCPM.design_name
+            print(self.params)
+
+            self.oProject =self.desktop.odesktop.GetActiveProject()
+            self.oDesign = self.oProject.GetActiveDesign()
+
+            oEditor = self.oDesign.SetActiveEditor("3D Modeler")
+
+            print(self.oDesign)
+            print(self.oProject)
+            print(oEditor)
+
+            # resume parameters
+            self.setup_name="MySetupAuto"
+
+            self.output_vars = {
+                
+                "Current_A": "InputCurrent(Phase_A)",
+                "Current_B": "InputCurrent(Phase_B)",
+                "Current_C": "InputCurrent(Phase_C)",
+                "Flux_A": "FluxLinkage(Phase_A)",
+                "Flux_B": "FluxLinkage(Phase_B)",
+                "Flux_C": "FluxLinkage(Phase_C)",
+                
+                
+                "pos": "(Moving1.Position) *NumPolePairs",
+                
+                "cos0": "cos(pos)",
+                "cos1": "cos(pos-2*PI/3)",
+                "cos2": "cos(pos-4*PI/3)",
+                "sin0": "sin(pos)",
+                "sin1": "sin(pos-2*PI/3)",
+                "sin2": "sin(pos-4*PI/3)",
+                
+                "Flux_d": "2/3*(Flux_A*cos0+Flux_B*cos1+Flux_C*cos2)",
+                "Flux_q": "-2/3*(Flux_A*sin0+Flux_B*sin1+Flux_C*sin2)",
+                
+                "I_d": "2/3*(Current_A*cos0 + Current_B*cos1 + Current_C*cos2)",
+                "I_q": "-2/3*(Current_A*sin0 + Current_B*sin1 + Current_C*sin2)",
+                
+                "Irms": "sqrt(I_d^2+I_q^2)/sqrt(2)",
+                
+                "ArmatureOhmicLoss_DC": "Irms^2*R_phase",
+                
+                "Lad": "L(Phase_A,Phase_A)*cos0 + L(Phase_A,Phase_B)*cos1 + L(Phase_A,Phase_C)*cos2",
+                "Laq": "L(Phase_A,Phase_A)*sin0 + L(Phase_A,Phase_B)*sin1 + L(Phase_A,Phase_C)*sin2",
+                "Lbd": "L(Phase_B,Phase_A)*cos0 + L(Phase_B,Phase_B)*cos1 + L(Phase_B,Phase_C)*cos2",
+                "Lbq": "L(Phase_B,Phase_A)*sin0 + L(Phase_B,Phase_B)*sin1 + L(Phase_B,Phase_C)*sin2",
+                "Lcd": "L(Phase_C,Phase_A)*cos0 + L(Phase_C,Phase_B)*cos1 + L(Phase_C,Phase_C)*cos2",
+                "Lcq": "L(Phase_C,Phase_A)*sin0 + L(Phase_C,Phase_B)*sin1 + L(Phase_C,Phase_C)*sin2",
+                
+                "L_d": "(Lad*cos0 + Lbd*cos1 + Lcd*cos2) * 2/3",
+                "L_q": "(Laq*sin0 + Lbq*sin1 + Lcq*sin2) * 2/3",
+                
+                "OutputPower": "Moving1.Speed*TorqueRotation.Torque",
+                
+                "Ui_A": "InducedVoltage(Phase_A)",
+                "Ui_B": "InducedVoltage(Phase_B)",
+                "Ui_C": "InducedVoltage(Phase_C)",
+                
+                "Ui_d": "2/3*(Ui_A*cos0 + Ui_B*cos1 + Ui_C*cos2)",
+                "Ui_q": "-2/3*(Ui_A*sin0 + Ui_B*sin1 + Ui_C*sin2)",
+                
+                "U_A": "Ui_A+R_Phase*Current_A",
+                "U_B": "Ui_B+R_Phase*Current_B",
+                "U_C": "Ui_C+R_Phase*Current_C",
+                
+                "U_d": "2/3*(U_A*cos0 + U_B*cos1 + U_C*cos2)",
+                "U_q": "-2/3*(U_A*sin0 + U_B*sin1 + U_C*sin2)",   
+            }
+
+            # Single plot
+            self.post_params = {"TorqueRotation.Torque": "TorqueRotation",
+                        "TorqueTilt.Torque": "TorqueTilt",}
+
+            # multiple plot
+            self.post_params_multiplot = {  
+            # reports
+
+                ("Force.Force_x","Force.Force_y","Force.Force_z"): "Force",
+                ("CoreLoss", "SolidLoss", "ArmatureOhmicLoss_DC"): "Losses",
+                
+                (
+                    "InputCurrent(Phase_A)",
+                    "InputCurrent(Phase_B)",
+                    "InputCurrent(Phase_C)",
+                ): "PhaseCurrents",
+                
+                (
+                    "FluxLinkage(Phase_A)",
+                    "FluxLinkage(Phase_B)",
+                    "FluxLinkage(Phase_C)",
+                ): "PhaseFluxes",
+                
+                ("I_d", "I_q"): "Currents_dq",
+                ("Flux_d", "Flux_q"): "Fluxes_dq",
+                ("Ui_d", "Ui_q"): "InducedVoltages_dq",
+                ("U_d", "U_q"): "Voltages_dq",
+                
+                (
+                    "L(Phase_A,Phase_A)",
+                    "L(Phase_B,Phase_B)",
+                    "L(Phase_C,Phase_C)",
+                    "L(Phase_A,Phase_B)",
+                    "L(Phase_A,Phase_C)",
+                    "L(Phase_B,Phase_C)",
+                ): "PhaseInductances",
+                
+                ("L_d", "L_q"): "Inductances_dq",
+                
+                ("CoreLoss", "CoreLoss(Stator)", "CoreLoss(Rotor)"): "CoreLosses",
+
+                (
+                    "EddyCurrentLoss",
+                    "EddyCurrentLoss(Stator)",
+                    "EddyCurrentLoss(Rotor)",
+                ): "EddyCurrentLosses (Core)",
+
+                (
+                    "HysteresisLoss",
+                    "HysteresisLoss(Stator)",
+                    "HysteresisLoss(Rotor)",
+                ): "HysteresisLoss (Core)",
+                
+                ("ExcessLoss", "ExcessLoss(Stator)", "ExcessLoss(Rotor)"): "ExcessLosses (Core)",
+                
+                (
+                    "HysteresisLoss",
+                    "HysteresisLoss(Stator)",
+                    "HysteresisLoss(Rotor)",
+                ): "HysteresisLosses (Core)",
+            }
 
 
+    def generate_mesh_export(self):
         #################################################################
-        # Analyze setup 
-        HBCPM.save_project()
-    # 	HBCPM.analyze_setup(setup_name, use_auto_settings=False, cores=4)	 # 4 cpu cores	
+        # Generate mesh and export mesh to file
+
+        self.oDesign.GenerateMesh(self.setup_name)
+        self.oDesign.ExportMeshStats(self.setup_name,"All",self.project_path+"/"+"meshstats.ms")
 
 
-    # 	solutions = HBCPM.post.get_solution_data(
-    # 		expressions="Moving1.Torque", primary_sweep_variable="Time"
-    # 	)
-    # 	mag = solutions.data_magnitude()
-    # 	avg = sum(mag) / len(mag)
-    # 	# solutions.plot()
 
-
-    # 	HBCPM.post.export_report_to_file(output_dir=project_path, 
-    # 								  plot_name="TorqueRotation", 
-    # 								  extension=".csv"
-    # )
+    def analyze_torque(self, Im, Is_a=0, Is_b=0):
+        #################################################################
+        # Analyze setup and export report to file
+        # 4 cpu cores
+        self.HBCPM.cleanup_solution(variations="All", entire_solution=True, field=True, mesh=True, linked_data=True)
         
+        self.Im=Im
+        self.Is_a=Is_a
+        self.Is_b=Is_b
+        current_variable={
+            "Im": str(self.Im)+"A",
+            "Is_a": str(self.Is_a)+"A",
+            "Is_b": str(self.Is_b)+"A",
+        }
+         # This call returns the VariableManager class
+        # Iterate through the dictionary and set each variable
+        for var_name, expression in current_variable.items():
+            self.HBCPM.variable_manager.set_variable(var_name, expression=expression)
+
+        print("Rotational torque Analysis start")
+        self.HBCPM.analyze_setup(self.setup_name, use_auto_settings=False, cores=4)
+
+        # # Single plot
+        # post_params = {"TorqueRotation.Torque": "TorqueRotation",
+        #             "TorqueTilt.Torque": "TorqueTilt",}
+
+        oModule = self.oDesign.GetModule("ReportSetup")
+
+        # update single plot report
+        for k, v in self.post_params.items():
+            k_list=[k]
+            oModule.UpdateTracesContextAndSweeps(v, k_list, self.setup_name+" : Transient", 
+                [
+                    "Domain:="		, "Sweep"
+                ], 
+                [
+                    "Time:="		, ["All"]
+                ])
+
+        # update multi plot report
+        for k, v in self.post_params_multiplot.items():
+            k_list=list(k)
+            oModule.UpdateTracesContextAndSweeps(v, k_list, self.setup_name+" : Transient", 
+                [
+                    "Domain:="		, "Sweep"
+                ], 
+                [
+                    "Time:="		, ["All"]
+                ])
+
+
+        try:
+            os.makedirs(self.project_path+"/"+"torque report", exist_ok=True)  
+                # 'exist_ok=True' prevents error if the directory exists
+        except Exception as e:
+            print(f"An error occurred when create torque report: {e}")
+
+
+
+        # export single plot report
+        for k, v in self.post_params.items():
+            self.HBCPM.post.export_report_to_file(output_dir=self.project_path+"/"+"torque report", 
+                                        plot_name=v, 
+                                        extension=".csv")
+
+        # export multi plot report
+        for k, v in self.post_params_multiplot.items():
+            self.HBCPM.post.export_report_to_file(output_dir=self.project_path+"/"+"torque report", 
+                                        plot_name=v, 
+                                        extension=".csv")
+
+
+    def analyze_force(self, Im=0, Is_a=1, Is_b=1):
+        #################################################################
+        # Analyze setup and export report to file
+        # 4 cpu cores
+
+        self.HBCPM.cleanup_solution(variations="All", entire_solution=True, field=True, mesh=True, linked_data=True)
+        
+        self.Im=Im
+        self.Is_a=Is_a
+        self.Is_b=Is_b
+        current_variable={
+            "Im": str(self.Im)+"A",
+            "Is_a": str(self.Is_a)+"A",
+            "Is_b": str(self.Is_b)+"A",
+        }
+         # This call returns the VariableManager class
+        # Iterate through the dictionary and set each variable
+        for var_name, expression in current_variable.items():
+            self.HBCPM.variable_manager.set_variable(var_name, expression=expression)
+
+        print("Force Analysis start")
+        self.HBCPM.analyze_setup(self.setup_name, use_auto_settings=False, cores=4)
+
+        # # Single plot
+        # post_params = {"TorqueRotation.Torque": "TorqueRotation",
+        #             "TorqueTilt.Torque": "TorqueTilt",}
+
+        oModule = self.oDesign.GetModule("ReportSetup")
+
+        # update single plot report
+        for k, v in self.post_params.items():
+            k_list=[k]
+            oModule.UpdateTracesContextAndSweeps(v, k_list, self.setup_name+" : Transient", 
+                [
+                    "Domain:="		, "Sweep"
+                ], 
+                [
+                    "Time:="		, ["All"]
+                ])
+
+        # update multi plot report
+        for k, v in self.post_params_multiplot.items():
+            k_list=list(k)
+            oModule.UpdateTracesContextAndSweeps(v, k_list, self.setup_name+" : Transient", 
+                [
+                    "Domain:="		, "Sweep"
+                ], 
+                [
+                    "Time:="		, ["All"]
+                ])
+
+
+            try:
+                os.makedirs(self.project_path+"/"+"force report", exist_ok=True)  
+                    # 'exist_ok=True' prevents error if the directory exists
+            except Exception as e:
+                print(f"An error occurred when create force report: {e}")
+
+
+        # export single plot report
+        for k, v in self.post_params.items():
+            self.HBCPM.post.export_report_to_file(output_dir=self.project_path+"/"+"force report", 
+                                        plot_name=v, 
+                                        extension=".csv")
+
+        # export multi plot report
+        for k, v in self.post_params_multiplot.items():
+            self.HBCPM.post.export_report_to_file(output_dir=self.project_path+"/"+"force report", 
+                                        plot_name=v, 
+                                        extension=".csv")
+
+        # 	solutions = HBCPM.post.get_solution_data(
+        # 		expressions="Moving1.Torque", primary_sweep_variable="Time"
+        # 	)
+        # 	mag = solutions.data_magnitude()
+        # 	avg = sum(mag) / len(mag)
+        # 	# solutions.plot()
+
         #################################################################
         # Using builtin optimizer or selfdefine optimizer
 
         """	
-        if(HBCPMSimuPara.BuildInOptimization):
+        if(self.BuildInOptimization):
         # Set Optimization  
 
-            oModule = oDesign.GetModule("Optimetrics")
+            oModule = self.oDesign.GetModule("Optimetrics")
 
             oModule.InsertSetup("OptiOptimization", 
                 [
@@ -3262,5 +3674,6 @@ class HBCPM_wrapper:
             
         """
 
-        desktop.save_project()
-        desktop.release_desktop()
+    def release_project(self):
+        self.HBCPM.save_project()
+        self.HBCPM.release_desktop()

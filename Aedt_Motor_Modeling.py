@@ -3,12 +3,12 @@ import ansys.aedt.core.downloads as downloads
 import os,time,json
 import pyaedt
 from ansys.aedt.core.visualization.plot.pdf import AnsysReport
-from SimuMotorPara import HBCPMConcentratedWindingParameters
+from HBCPM import HBCPMConcentratedWindingParameters
 from GeneratePhaseCoil import generate_three_phases
 from GeneratePhaseCoil import generate_two_phases
 
 
-def BuildHBCPM(params,motor_config):
+def BuildHBCPM(file_path):
 
 	# Launch AEDT
 	AedtVersion = "2024.1"  # Replace with your installed AEDT version
@@ -16,7 +16,7 @@ def BuildHBCPM(params,motor_config):
 	ProjectName=os.path.basename(ProjectFullName)
 	print(ProjectName+"**************************")
 
-	project_path="C:/he/HBCPM/"+motor_config+ProjectName
+	project_path="C:/he/HBCPM/"+file_path+ProjectName
 	project_path = os.path.splitext(project_path)[0]  # This removes the file extension
 
 	# build the dir
@@ -25,7 +25,6 @@ def BuildHBCPM(params,motor_config):
 		# 'exist_ok=True' prevents error if the directory exists
 	except Exception as e:
 		print(f"An error occurred: {e}")
-
 
 	DesignName = "HBCPM"
 	desktop = Desktop(version=AedtVersion,new_desktop=True, non_graphical=False, close_on_exit=True)
@@ -39,7 +38,7 @@ def BuildHBCPM(params,motor_config):
 					non_graphical=False, 
 					close_on_exit=True)
 
-	HBCPMSimuPara = HBCPMConcentratedWindingParameters(params)
+	HBCPMSimuPara = self.params
 
 	HBCPM.solution_type = HBCPM.SOLUTIONS.Maxwell3d.Transient
 
@@ -3060,7 +3059,6 @@ def BuildHBCPM(params,motor_config):
 
 	desktop.save_project()
 	desktop.release_desktop()
-
 
 # # Example Usage
 if __name__ == '__main__': 

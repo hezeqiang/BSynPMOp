@@ -1,7 +1,7 @@
 {
     "RadialPMNumber": "4",
     "StatorPoleNumber": "12",
-    "RadialPMAngle": "30.6deg",
+    "RadialPMAngle": "36.0deg",
     "RotorInnerRadius": "16.6mm",
     "RotorCenterThickness": "8mm",
     "RotorOuterRadius": "25mm",
@@ -28,15 +28,15 @@
     "SusWindingLength": "13.823153928487944mm",
     "WindingThickness": "2.6761038101446135mm",
     "WindingRadialLength": "13.3mm",
-    "rpm": "3000",
+    "Velocity_rpm": "3000",
     "turnm": "90",
     "turns": "100",
     "Im": "2A",
     "Is_a": "0A",
     "Is_b": "0A",
-    "ImA": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2)",
-    "ImB": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
-    "ImC": "Im*cos(rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
+    "ImA": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2)",
+    "ImB": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
+    "ImC": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
     "NumPolePairs": "4",
     "R_phase": "0.6Ohm"
 }
