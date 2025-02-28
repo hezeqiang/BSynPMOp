@@ -1,1 +1,4 @@
 # HBCPMOptimizationCode
+
+
+把maxwell里面的建模和analyze代码包装了一下，放在了HBCPM.py文件里面，里面包含了一些maxwell的接口函数，示例在HBCPM_build_test.py
