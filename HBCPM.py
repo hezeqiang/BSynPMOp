@@ -232,15 +232,13 @@ class HBCPMWrapper:
             self.ProjectName=os.path.basename(ProjectFullName)
             print(self.ProjectName+"**************************")
 
+
             self.project_path="C:/he/HBCPM/"+json_file_name[:-5]+self.ProjectName
             self.project_path = os.path.splitext(self.project_path)[0]  # This removes the file extension
             # example:self.project_path ="C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_TZ8"
 
 
             print(self.params)
-            # Save the dictionary as a JSON file
-            with open(self.project_path+"/"+"Para.json", "w") as json_file:
-                json.dump(self.params, json_file, indent=4)
 
             # build the dir
             try:
@@ -249,6 +247,9 @@ class HBCPMWrapper:
             except Exception as e:
                 print(f"An error occurred: {e}")
 
+            # Save the dictionary as a JSON file
+            with open(self.project_path+"/"+"Para.json", "w") as json_file:
+                json.dump(self.params, json_file, indent=4)
 
             try:
                 os.makedirs(self.project_path+"/"+"torque report", exist_ok=True)  
@@ -3350,7 +3351,7 @@ class HBCPMWrapper:
         self.oDesign.GenerateMesh(self.setup_name)
         self.oDesign.ExportMeshStats(self.setup_name,"All",self.project_path+"/"+"meshstats.ms")
 
-    def analyze_torque(self, Im, Is_a=0, Is_b=0):
+    def analyze_torque(self, Im=1, Is_a=0, Is_b=0):
         #################################################################
         # Analyze setup and export report to file
         # 4 cpu cores

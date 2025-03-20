@@ -2960,3 +2960,97 @@ Starting Batch Run: 9:25:36 PM  Feb 07, 2025
 Running as user : KAFU\shins
 Temp directory: C:\Users\shins\AppData\Local\Temp
 Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 4:08:28 PM  Feb 28, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 57315. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Project Project_T1O Saved correctly
+        [info] Project Project_T1O Saved correctly
+        [info] Modeler class has been initialized! Elapsed time: 0m 24sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_T1O/Project_T1O.aedt.
+        [info] File C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_T1O/Project_T1O.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.1919398307800293
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Project Project_T1O Saved correctly
+        [info] Project Project_T1O Saved correctly
+        [info] Parsing C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_T1O/Project_T1O.aedt.
+        [info] File C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_T1O/Project_T1O.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.3457953929901123
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_T1O Saved correctly
+-- Message Window --
+Stopping Batch Run: 4:10:44 PM  Feb 28, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 4:11:50 PM  Feb 28, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 57951. 
+-- Message Window --
+Stopping Batch Run: 4:22:51 PM  Feb 28, 2025
+Starting Batch Run: 4:12:16 PM  Feb 28, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 58025. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Project Project_S0A Saved correctly
+        [info] Project Project_S0A Saved correctly
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_S0A/Project_S0A.aedt.
+        [info] File C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_S0A/Project_S0A.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.17914509773254395
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Project Project_S0A Saved correctly
+        [info] Project Project_S0A Saved correctly
+        [info] Parsing C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_S0A/Project_S0A.aedt.
+        [info] File C:/he/HBCPM/8p12s_HBCPM_without_radial_PM_four_slotProject_S0A/Project_S0A.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.24515199661254883
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_S0A Saved correctly
+        [error] **************************************************************
+        [error]   File "c:\he\HBCPM\OptimizationCode\HBCPM_build_test.py", line 21, in <module>
+        [error]     HBCPM.analyze_torque()
+        [error]   File "c:\he\HBCPM\OptimizationCode\HBCPM.py", line 3358, in analyze_torque
+        [error]     self.HBCPM.cleanup_solution(variations="All", entire_solution=True, field=True, mesh=True, linked_data=True)
+        [error] AEDT API Error on cleanup_solution
+        [error] Last Electronics Desktop Message - [error] aedt api error on cleanup_solution  
+        [error] Method arguments: 
+        [error]     variations = All 
+        [error]     entire_solution = True 
+        [error]     field = True 
+        [error]     mesh = True 
+        [error]     linked_data = True 
+        [error] **************************************************************
+        [info] Key Desktop/ActiveDSOConfigurations/Maxwell 3D correctly changed.
+        [info] Solving design setup MySetupAuto
+        [info] Key Desktop/ActiveDSOConfigurations/Maxwell 3D correctly changed.
+        [info] Design setup MySetupAuto solved correctly in 2.0h 39.0m 56.0s
+        [info] Project Project_S0A Saved correctly
+-- Message Window --
+Stopping Batch Run: 6:53:22 PM  Feb 28, 2025
