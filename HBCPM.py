@@ -5,14 +5,17 @@ import ansys.aedt.core.downloads as downloads
 import os,time,json
 import pyaedt
 from ansys.aedt.core.visualization.plot.pdf import AnsysReport
-from generat_phases_coils import generate_three_phases
-from generat_phases_coils import generate_two_phases
+from utilis.generat_phases_coils import generate_three_phases
+from utilis.generat_phases_coils import generate_two_phases
+from pathlib import Path
 
 class HBCPMWrapper:
 
     def __init__(self,default_json_file_name=None):    
         
         self.defaults_para = {
+
+            "Proj_path": "C:/he/HBCPM",  # Path to save the project, you can change it to your own path
     
             "NumPolePairs": 4,
             "StatorPoleNumber": 12,  
@@ -25,7 +28,7 @@ class HBCPMWrapper:
             "RotorCenterThickness": 8,
             "RotorOuterRadius": 25,
 
-            "RotorPMAxialThickness": 2,
+            "RotorPMAxialThickness": 3,
             "RotorPMAxialRadialWidth": 3,
 
             "RotorIronOuterRadius": 25,
@@ -38,7 +41,7 @@ class HBCPMWrapper:
             "StatorYokeWidth": 8,
 
             "StatorPMRadialWidth": 3,
-            "StatorPMThickness": 2,
+            "StatorPMThickness": 3,
             "StatorIronThickness": 1.5,
 
             "StatorPoleToothWidthArcRatio": 1 / 4,
@@ -63,7 +66,8 @@ class HBCPMWrapper:
             "Createsetup":True,
             "Postprocessing":True,
             "BuildInOptimization":False,
-            
+
+
         }
 
         if default_json_file_name is not None:
@@ -100,6 +104,7 @@ class HBCPMWrapper:
         self.updata_params()
 
     def updata_params(self):
+        self.Proj_path = self.params["Proj_path"]  # Path to save the project, you can change it to your own path
 
         self.RadialPM = self.params["RadialPM"]
         self.RadialPMNumber = self.params["NumPolePairs"]
@@ -232,8 +237,15 @@ class HBCPMWrapper:
             self.ProjectName=os.path.basename(ProjectFullName)
             print(self.ProjectName+"**************************")
 
+            path = Path(self.Proj_path)
 
-            self.project_path="C:/he/HBCPM/"+json_file_name[:-5]+self.ProjectName
+            if path.exists():          # or:  if path.is_dir()
+                print(f"{path} already exists")
+            else:
+                path.mkdir(parents=True)
+                print(f"Created {path}")
+
+            self.project_path=self.Proj_path+"/"+json_file_name[:-5]+self.ProjectName
             self.project_path = os.path.splitext(self.project_path)[0]  # This removes the file extension
             # example:self.project_path ="C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_TZ8"
 
@@ -2996,7 +3008,7 @@ class HBCPMWrapper:
 
             # Create field report
             oModule = self.oDesign.GetModule("FieldsReporter")
-            oModule.LoadNamedExpressions("C:\\he\\HBCPM\\cal.clc", "Fields", ["B_air", "Br", "Bt"])
+            oModule.LoadNamedExpressions(self.Proj_path+"/cal.clc", "Fields", ["B_air", "Br", "Bt"])
 
             oModule.CreateFieldPlot(
                 [

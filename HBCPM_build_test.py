@@ -7,7 +7,7 @@ if __name__ == "__main__":
     # you can choose either build a new project or resume a project
 
     # the .json file containing the para of the projrct you want to create
-    filename ="8p12s_HBCPM_without_radial_PM_four_slot.json"
+    filename ="4p12s_HBCPM_with_radial_PM_four_slot.json"
     HBCPM.create_project(filename)
     print("Project created")
     HBCPM.build_motor()
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     HBCPM.create_excitation()
     HBCPM.create_setup()
     HBCPM.create_report()
-    HBCPM.analyze_torque()
+    # HBCPM.analyze_torque()
     # HBCPM.analyze_force()
     HBCPM.release_project()
 

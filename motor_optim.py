@@ -3,13 +3,13 @@ import numpy as np
 import matplotlib as mpl
 from collections import OrderedDict
 import matplotlib.pyplot as plt
-from AirgapFluxDensityDefine import AirgapFluxDensity
-from PhaseFluxLinkageCal import FluxLinkageCalculator
-from EMF_calculator import EMF_Calculator
-from FFT_analyzer import FFTAnalyser
-from FFT_analyzer import generate_cos_list_and_plot
-from Power_torque_calculator import ThreePhaseMotorPower
-from RotorRadialForceCal import RotorRadialForceCalculator
+from utilis.AirgapFluxDensityDefine import AirgapFluxDensity
+from utilis.PhaseFluxLinkageCal import FluxLinkageCalculator
+from utilis.EMF_calculator import EMF_Calculator
+from utilis.FFT_analyzer import FFTAnalyser
+from utilis.FFT_analyzer import generate_cos_list_and_plot
+from utilis.Power_torque_calculator import ThreePhaseMotorPower
+from utilis.RotorRadialForceCal import RotorRadialForceCalculator
 
 
 ##################################################################

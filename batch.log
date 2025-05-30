@@ -3054,3 +3054,71 @@ Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
         [info] Project Project_S0A Saved correctly
 -- Message Window --
 Stopping Batch Run: 6:53:22 PM  Feb 28, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:06:36 PM  May 30, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 59182. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Project Project_8HY Saved correctly
+        [info] Project Project_8HY Saved correctly
+        [info] Modeler class has been initialized! Elapsed time: 0m 25sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_8HY/Project_8HY.aedt.
+        [info] File C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_8HY/Project_8HY.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.16539764404296875
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Project Project_8HY Saved correctly
+        [info] Project Project_8HY Saved correctly
+        [info] Parsing C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_8HY/Project_8HY.aedt.
+        [info] File C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_8HY/Project_8HY.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.23817920684814453
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_8HY Saved correctly
+        [info] Project Project_8HY Saved correctly
+-- Message Window --
+Stopping Batch Run: 2:09:27 PM  May 30, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:22:50 PM  May 30, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 59655. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Project Project_H3Y Saved correctly
+        [info] Project Project_H3Y Saved correctly
+        [info] Modeler class has been initialized! Elapsed time: 0m 1sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_H3Y/Project_H3Y.aedt.
+        [info] File C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_H3Y/Project_H3Y.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.190324068069458
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Project Project_H3Y Saved correctly
+        [info] Project Project_H3Y Saved correctly
+        [info] Parsing C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_H3Y/Project_H3Y.aedt.
+        [info] File C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_H3Y/Project_H3Y.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.23068594932556152
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_H3Y Saved correctly
+        [info] Project Project_H3Y Saved correctly
+-- Message Window --
+Stopping Batch Run: 2:24:51 PM  May 30, 2025
