@@ -15,14 +15,15 @@ class HBCPMWrapper:
         
         self.defaults_para = {
 
-            "Proj_path": "C:/he/HBCPM",  # Path to save the project, you can change it to your own path
+            "Proj_path": "F:/he/HBCPM",  # Path to save the project, you can change it to your own path
     
             "NumPolePairs": 4,
             "StatorPoleNumber": 12,  
                
             "RadialPM": True,
-            "RadialPMPoleArcRatio": 0.8,
+            "RadialPMPoleArcRatio": 0.9,
             "RadialPMThickness": 2,
+            "RadialPMPoleArcEmpthRatio": 0.1,
 
             "RotorInnerRadius": 16.6,
             "RotorCenterThickness": 8,
@@ -110,6 +111,7 @@ class HBCPMWrapper:
         self.RadialPMNumber = self.params["NumPolePairs"]
         self.StatorPoleNumber = self.params["StatorPoleNumber"]
         self.RadialPMAngle = 360 / 2 / self.params["NumPolePairs"] * self.params["RadialPMPoleArcRatio"]  # Percentage
+        self.RadialPMEmptyAngle = 360 / 2 / self.params["NumPolePairs"] * (self.params["RadialPMPoleArcRatio"]+self.params["RadialPMPoleArcEmpthRatio"] ) # Percentage
 
         self.RotorInnerRadius = self.params["RotorInnerRadius"]
         self.RotorCenterThickness = self.params["RotorCenterThickness"]
@@ -308,7 +310,8 @@ class HBCPMWrapper:
                     "RadialPMNumber":str(self.NumPolePairs),
                     "StatorPoleNumber":str(self.StatorPoleNumber),
                     "RadialPMAngle": str(self.RadialPMAngle)+"deg",
-
+                    "RadialPMEmptyAngle": str(self.RadialPMEmptyAngle)+"deg",
+                    
                     "RotorInnerRadius": str(self.RotorInnerRadius)+"mm",
                     "RotorCenterThickness": str(self.RotorCenterThickness)+"mm",
                     "RotorOuterRadius": str(self.RotorOuterRadius)+"mm",
@@ -453,7 +456,7 @@ class HBCPMWrapper:
                         "NAME:magnetic_coercivity",
                         "property_type:="	, "VectorProperty",
                         "Magnitude:="		, "-956678.252234359A_per_meter",
-                        "DirComp1:="		, "1",
+                        "DirComp1:="		, "-1",
                         "DirComp2:="		, "0",
                         "DirComp3:="		, "0",
                     ]
@@ -510,6 +513,7 @@ class HBCPMWrapper:
 
         # Rotor main body
         ###################################################################################
+        self.all_objectsList=[]
 
         if (self.BuildMotor):
             print("BuildMotor")
@@ -625,6 +629,53 @@ class HBCPMWrapper:
                         "IsLightweight:="	, False
                     ])
 
+            RotorRadialPMEmpty = oEditor.CreateRectangle(
+                [
+                    "NAME:RectangleParameters",
+                    "IsCovered:="		, True,
+                    "XStart:="		, "RotorOuterRadius-RadialPMThickness",
+                    "YStart:="		, "-RotorCenterThickness/2",
+                    "ZStart:="		, "0mm",
+                    "Width:="		, "RadialPMThickness",
+                    "Height:="		, "RotorCenterThickness",
+                    "WhichAxis:="		, "Z"
+                ], 
+                [
+                    "NAME:Attributes",
+                    "Name:="		, "RotorRadialPM",
+                    "Flags:="		, "",
+                    "Color:="		, "(143 175 143)",
+                    "Transparency:="	, 0,
+                    "PartCoordinateSystem:=", "Global",
+                    "UDMId:="		, "",
+                    "MaterialValue:="	, "\"vacuum\"",
+                    "SurfaceMaterialValue:=", "\"\"",
+                    "SolveInside:="		, True,
+                    "ShellElement:="	, False,
+                    "ShellElementThickness:=", "0mm",
+                    "ReferenceTemperature:=", "20cel",
+                    "IsMaterialEditable:="	, True,
+                    "UseMaterialAppearance:=", False,
+                    "IsLightweight:="	, False
+                ])
+
+            oEditor.SweepAroundAxis(
+                [
+                    "NAME:Selections",
+                    "Selections:="		, RotorRadialPMEmpty,
+                    "NewPartsModelFlag:="	, "Model"
+                ], 
+                [
+                    "NAME:AxisSweepParameters",
+                    "DraftAngle:="		, "0deg",
+                    "DraftType:="		, "Round",
+                    "CheckFaceFaceIntersection:=", False,
+                    "ClearAllIDs:="		, False,
+                    "SweepAxis:="		, "Y",
+                    "SweepAngle:="		, "RadialPMEmptyAngle/2",
+                    "NumOfSegments:="	, "0"
+                ])
+
 
             oEditor.SweepAroundAxis(
                 [
@@ -642,6 +693,31 @@ class HBCPMWrapper:
                     "SweepAngle:="		, "RadialPMAngle/2",
                     "NumOfSegments:="	, "0"
                 ])
+
+
+            RotorRadialPMEmptyhalf = oEditor.DuplicateMirror(
+                [
+                    "NAME:Selections",
+                    "Selections:="		, RotorRadialPMEmpty,
+                    "NewPartsModelFlag:="	, "Model"
+                ], 
+                [
+                    "NAME:DuplicateToMirrorParameters",
+                    "DuplicateMirrorBaseX:=", "0mm",
+                    "DuplicateMirrorBaseY:=", "0mm",
+                    "DuplicateMirrorBaseZ:=", "0mm",
+                    "DuplicateMirrorNormalX:=", "0mm",
+                    "DuplicateMirrorNormalY:=", "0mm",
+                    "DuplicateMirrorNormalZ:=", "1mm"
+                ], 
+                [
+                    "NAME:Options",
+                    "DuplicateAssignments:=", True
+                ], 
+                [
+                    "CreateGroupsForNewObjects:=", False
+                ])
+
 
             RotorRadialPMhalf = oEditor.DuplicateMirror(
                 [
@@ -666,6 +742,9 @@ class HBCPMWrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
+            self.RotorRadialPMEmptyhalfList=[RotorRadialPMEmpty]
+            self.RotorRadialPMEmptyhalfList.extend(RotorRadialPMEmptyhalf)
+
             self.RotorRadialPMhalfList=[RotorRadialPM]
             self.RotorRadialPMhalfList.extend(RotorRadialPMhalf)
 
@@ -673,6 +752,17 @@ class HBCPMWrapper:
                 [
                     "NAME:Selections",
                     "Selections:="		, ",".join(map(str, self.RotorRadialPMhalfList))
+                ], 
+                [
+                    "NAME:UniteParameters",
+                    "KeepOriginals:="	, False,
+                    "TurnOnNBodyBoolean:="	, True
+                ])
+
+            oEditor.Unite(
+                [
+                    "NAME:Selections",
+                    "Selections:="		, ",".join(map(str, self.RotorRadialPMEmptyhalfList))
                 ], 
                 [
                     "NAME:UniteParameters",
@@ -701,20 +791,57 @@ class HBCPMWrapper:
                     "CreateGroupsForNewObjects:=", False
                 ])
 
+            RotorRadialPMEMptyDupt = oEditor.DuplicateAroundAxis(
+                [
+                    "NAME:Selections",
+                    "Selections:="		, RotorRadialPMEmpty,
+                    "NewPartsModelFlag:="	, "Model"
+                ], 
+                [
+                    "NAME:DuplicateAroundAxisParameters",
+                    "CreateNewObjects:="	, True,
+                    "WhichAxis:="		, "Y",
+                    "AngleStr:="		, "(360/RadialPMNumber)deg",
+                    "NumClones:="		, "RadialPMNumber"
+                ], 
+                [
+                    "NAME:Options",
+                    "DuplicateAssignments:=", True
+                ], 
+                [
+                    "CreateGroupsForNewObjects:=", False
+                ])
+
+
             #  define all object of PM
             self.RotorRadialPMList=[RotorRadialPM]
             self.RotorRadialPMList.extend(RotorRadialPMDupt)
             # print(RotorRadialPMList)
 
+            self.RotorRadialPMEmptyList=[RotorRadialPMEmpty]
+            self.RotorRadialPMEmptyList.extend(RotorRadialPMEMptyDupt)
+
+            # oEditor.Subtract(
+            #     [
+            #         "NAME:Selections",
+            #         "Blank Parts:="		, "Rotor",
+            #         "Tool Parts:="		, ",".join(map(str, self.RotorRadialPMList))
+            #     ], 
+            #     [
+            #         "NAME:SubtractParameters",
+            #         "KeepOriginals:="	, True,
+            #         "TurnOnNBodyBoolean:="	, True
+            #     ])
+
             oEditor.Subtract(
                 [
                     "NAME:Selections",
                     "Blank Parts:="		, "Rotor",
-                    "Tool Parts:="		, ",".join(map(str, self.RotorRadialPMList))
+                    "Tool Parts:="		, ",".join(map(str, self.RotorRadialPMEmptyList))
                 ], 
                 [
                     "NAME:SubtractParameters",
-                    "KeepOriginals:="	, True,
+                    "KeepOriginals:="	, False,
                     "TurnOnNBodyBoolean:="	, True
                 ])
 
@@ -814,7 +941,7 @@ class HBCPMWrapper:
                         ]
                     ]
                 ])
-
+ 
             print("Create "+ str(self.RotorAxialPMList) + " successful")
 
             # Rotor axial Iron
@@ -890,6 +1017,8 @@ class HBCPMWrapper:
 
             self.RotorAxialIronList=[RotorAxialIron]
             self.RotorAxialIronList.extend(RotorAxialIronDupt)
+
+            self.RotorList = [self.Rotor] + self.RotorRadialPMList + self.RotorAxialPMList + self.RotorAxialIronList
 
             print("Create " + str(self.RotorAxialIronList) + " successful")
 
@@ -1590,8 +1719,8 @@ class HBCPMWrapper:
                     "TurnOnNBodyBoolean:="	, True
                 ])
 
+            self.StatorAllList = [self.Stator] + self.StatorAxialPMList + self.StatorAxialIronList
             print("Create " + str(self.StatorList) + " successful")
-
 
 
             ###################################################################
@@ -2459,6 +2588,21 @@ class HBCPMWrapper:
             self.AirgapAxialSweepList=[AirgapAxialSweep]
             self.AirgapAxialSweepList.extend(AirgapAxialSweepDup)
 
+            self.all_objectsList = self.RotorList + self.StatorAllList+ self.ArmatureWindingList+ self.SuspensionWindingList+ self.AirgapList + self.ArmatureWindingSectionList+ self.SuspensionWindingSectionList+ self.AirgapAxialSweepList +[self.Band, self.Air,self.AirgapCircleSweep]
+
+            oEditor.Rotate(
+                [
+                    "NAME:Selections",
+                    "Selections:="		, ",".join(map(str, self.all_objectsList)),
+                    "NewPartsModelFlag:="	, "Model"
+                ], 
+                [
+                    "NAME:RotateParameters",
+                    "RotateAxis:="		, "X",
+                    "RotateAngle:="		, "90deg"
+                ])
+
+
             self.HBCPM.save_project()
 
     def mesh(self):
@@ -2623,7 +2767,7 @@ class HBCPMWrapper:
 
             self.HBCPM.assign_rotate_motion(
                 assignment=self.Band,
-                coordinate_system = "RelativeCoordSyst",
+                coordinate_system = "Global",
                 axis="Z",
                 positive_movement=True,
                 start_position="0deg",
@@ -2638,13 +2782,13 @@ class HBCPMWrapper:
 
             oModule = self.oDesign.GetModule("MaxwellParameterSetup")
 
-            self.RotorList=self.RotorAxialIronList+self.RotorRadialPMList+self.RotorAxialPMList
-            self.RotorList.append(self.Rotor)
+            # self.RotorList=self.RotorAxialIronList+self.RotorRadialPMList+self.RotorAxialPMList
+            # self.RotorList.append(self.Rotor)
 
             oModule.AssignForce(
                 [
                     "NAME:Force",
-                    "Reference CS:="	, "RelativeCoordSyst",
+                    "Reference CS:="	, "Global",
                     "Is Virtual:="		, True,
                     "Objects:="		, self.RotorList
                 ])
@@ -2652,7 +2796,7 @@ class HBCPMWrapper:
                 [
                     "NAME:TorqueRotation",
                     "Is Virtual:="		, True,
-                    "Coordinate System:="	, "RelativeCoordSyst",
+                    "Coordinate System:="	, "Global",
                     "Axis:="		, "Z",
                     "Is Positive:="		, True,
                     "Objects:="		, self.RotorList
@@ -2661,7 +2805,7 @@ class HBCPMWrapper:
                 [
                     "NAME:TorqueTilt",
                     "Is Virtual:="		, True,
-                    "Coordinate System:="	, "RelativeCoordSyst",
+                    "Coordinate System:="	, "Global",
                     "Axis:="		, "X",
                     "Is Positive:="		, True,
                     "Objects:="		, self.RotorList
@@ -2833,8 +2977,8 @@ class HBCPMWrapper:
                         "NAME:MeshLink",
                         "ImportMesh:="		, False
                     ],
-                    "NonlinearSolverResidual:=", "0.005",
-                    "ScalarPotential:="	, "Second Order",
+                    "NonlinearSolverResidual:=", "0.01",
+                    "ScalarPotential:="	, "First Order",
                     "SmoothBHCurve:="	, False,
                     "StopTime:="		, str(60/self.Velocity_rpm/self.NumPolePairs/2)+"s",
                     "TimeStep:="		, str(60/self.Velocity_rpm/self.NumPolePairs/2/10)+"s",
@@ -2849,7 +2993,10 @@ class HBCPMWrapper:
                     "AutoDetectSteadyState:=", False,
                     "IsGeneralTransient:="	, True,
                     "IsHalfPeriodicTransient:=", False,
-                    "SaveFieldsType:="	, "None",
+                    "SaveFieldsType:="	, "Every N Steps",
+                    "N Steps:="		, "1",
+                    "Steps From:="		, "0s",
+                    "Steps To:="		, "0.0025s",
                     "UseNonLinearIterNum:="	, False,
                     "CacheSaveKind:="	, "Count",
                     "NumberSolveSteps:="	, 1,
@@ -3186,6 +3333,7 @@ class HBCPMWrapper:
                 "X Component:="		, "Distance",
                 "Y Component:="		, ["B_air"]
             ])
+
             self.HBCPM.save_project()
 
     def resume_project(self, project_name=None):
