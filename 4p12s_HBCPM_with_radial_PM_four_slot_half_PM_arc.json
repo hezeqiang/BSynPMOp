@@ -12,6 +12,7 @@
     "RotorPMAxialRadialWidth": 3,
     "RotorIronOuterRadius": 25,
     "RotorIronThickness": 1.5,
+
     "StatorInnerRadius": 27,
     "StatorAxialThickness": 8,
     "StatorOuterRadius": 56,
@@ -20,8 +21,12 @@
     "StatorPMRadialWidth": 3,
     "StatorPMThickness": 3,
     "StatorIronThickness": 1.5,
+
+    // the additional width of the stator tooth. If the pole width is 8 mm, addition tooth width is 2 on top and 2 on bottom
     "StatorPoleToothWidthArcRatio": 0.25,
-    "StatorPoleTeethAngle": 45,
+    // angle of the tooth back curve to the stator pole horizontal line
+    "StatorPoleTeethAngle": 45, 
+
     "WindingRadialLength": 13.3,
     "SuspensionWindingFullSlot": false,
     "Velocity_rpm": 3000,
