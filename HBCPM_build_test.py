@@ -7,8 +7,9 @@ if __name__ == "__main__":
     # you can choose either build a new project or resume a project
 
     # the .json file containing the para of the projrct you want to create
-    filename ="4p12s_HBCPM_with_radial_PM_four_slot_half_PM_arc.json"
-    HBCPM.create_project(filename)
+    filename ="8p12s_HBCPM_with_radial_PM_four_slot_half_PM_arc.json"
+    Pro_save_path = "G:/HBCPM"
+    HBCPM.create_project(filename, Pro_save_path)
     print("Project created")
     HBCPM.build_motor()
     HBCPM.mesh()

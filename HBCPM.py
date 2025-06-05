@@ -222,7 +222,7 @@ class HBCPMWrapper:
         self.R_phase = R_phase
         """
 
-    def create_project(self,json_file_name=None):
+    def create_project(self,json_file_name=None, Proj_path=None):
     	# HBCPMInstance=BuildHBCPM(params,filename[:-5])
         # prokect_name is for opening a existing project, str
         # example: C:/he/HBCPM/4p12s_HBCPM_with_radial_PM_four_slotProject_TZ8/Project_TZ8.aedt
@@ -239,7 +239,11 @@ class HBCPMWrapper:
             self.ProjectName=os.path.basename(ProjectFullName)
             print(self.ProjectName+"**************************")
 
-            path = Path(self.Proj_path)
+            if Proj_path is not None:
+                path = Path(Proj_path)
+                self.Proj_path = Proj_path
+            else:
+                path = Path(self.Proj_path)
 
             if path.exists():          # or:  if path.is_dir()
                 print(f"{path} already exists")
@@ -304,122 +308,72 @@ class HBCPMWrapper:
             print(self.oProject)
             print(oEditor)
 
+            variables = {
+                "RadialPMNumber":str(self.NumPolePairs),
+                "StatorPoleNumber":str(self.StatorPoleNumber),
+                "RadialPMAngle": str(self.RadialPMAngle)+"deg",
+                "RadialPMEmptyAngle": str(self.RadialPMEmptyAngle)+"deg",
+                
+                "RotorInnerRadius": str(self.RotorInnerRadius)+"mm",
+                "RotorCenterThickness": str(self.RotorCenterThickness)+"mm",
+                "RotorOuterRadius": str(self.RotorOuterRadius)+"mm",
+                "RadialPMThickness": str(self.RadialPMThickness)+"mm",
+                "RotorPMAxialThickness": str(self.RotorPMAxialThickness)+"mm",
+
+                "RotorIronOuterRadius": str(self.RotorIronOuterRadius)+"mm",
+                "RotorIronThickness": str(self.RotorIronThickness)+"mm",
+                
+                "RotorPMAxialOuterRadius": str(self.RotorPMAxialOuterRadius)+"mm",
+                "RotorPMInnerRadius": str(self.RotorPMInnerRadius)+"mm",
+
+                "StatorYokeWidth": str(self.StatorYokeWidth)+"mm",
+                "StatorInnerRadius": str(self.StatorInnerRadius)+"mm",
+                "StatorAxialThickness": str(self.StatorAxialThickness)+"mm",
+                "StatorOuterRadius": str(self.StatorOuterRadius)+"mm",
+
+                "StatorPoleWidth": str(self.StatorPoleWidth)+"mm",
+                "StatorPMOuterRadius": str(self.StatorPMOuterRadius)+"mm",
+                "StatorPMThickness": str(self.StatorPMThickness)+"mm",
+                "StatorIronThickness": str(self.StatorIronThickness)+"mm",
+                "StatorIronOuterRadius": str(self.StatorIronOuterRadius)+"mm",
+                "RotorIronInnerRadius": str(self.RotorIronInnerRadius)+"mm",
+
+                "StatorPoleTeethAdditionLength": str(self.StatorPoleWidth/4)+"mm",
+                "StatorPoleTeethAngle":  str(self.StatorPoleTeethAngle)+"deg",
+
+                "StatorPoleTeethStartX": str(self.StatorPoleTeethStartX)+"mm",
+
+
+                "SusWindThickness": str(self.SusWindThickness)+"mm",
+                "SusWindingLength": str(self.SusWindLength)+"mm",
+                "WindingThickness": str(self.WindingThickness)+"mm",
+                "WindingRadialLength": str(self.WindingRadialLength)+"mm",
+                "Velocity_rpm": str(self.Velocity_rpm),
+
+                "turnm": str(self.turnm),
+                "turns": str(self.turns),
+                "Im": str(self.Im)+"A",
+                "Is_a": str(self.Is_a)+"A",
+                "Is_b": str(self.Is_b)+"A",
+                "NumPolePairs":str(self.NumPolePairs),
+
+                "R_phase":str(self.R_phase)+"Ohm"}
+
+
             # Define variables and expressions in a dictionary
             if (self.StatorPoleNumber / self.NumPolePairs == 3):
-                variables = {
-                    "RadialPMNumber":str(self.NumPolePairs),
-                    "StatorPoleNumber":str(self.StatorPoleNumber),
-                    "RadialPMAngle": str(self.RadialPMAngle)+"deg",
-                    "RadialPMEmptyAngle": str(self.RadialPMEmptyAngle)+"deg",
-                    
-                    "RotorInnerRadius": str(self.RotorInnerRadius)+"mm",
-                    "RotorCenterThickness": str(self.RotorCenterThickness)+"mm",
-                    "RotorOuterRadius": str(self.RotorOuterRadius)+"mm",
-                    "RadialPMThickness": str(self.RadialPMThickness)+"mm",
-                    "RotorPMAxialThickness": str(self.RotorPMAxialThickness)+"mm",
-
-                    "RotorIronOuterRadius": str(self.RotorIronOuterRadius)+"mm",
-                    "RotorIronThickness": str(self.RotorIronThickness)+"mm",
-                    
-                    "RotorPMAxialOuterRadius": str(self.RotorPMAxialOuterRadius)+"mm",
-                    "RotorPMInnerRadius": str(self.RotorPMInnerRadius)+"mm",
-
-                    "StatorYokeWidth": str(self.StatorYokeWidth)+"mm",
-                    "StatorInnerRadius": str(self.StatorInnerRadius)+"mm",
-                    "StatorAxialThickness": str(self.StatorAxialThickness)+"mm",
-                    "StatorOuterRadius": str(self.StatorOuterRadius)+"mm",
-
-                    "StatorPoleWidth": str(self.StatorPoleWidth)+"mm",
-                    "StatorPMOuterRadius": str(self.StatorPMOuterRadius)+"mm",
-                    "StatorPMThickness": str(self.StatorPMThickness)+"mm",
-                    "StatorIronThickness": str(self.StatorIronThickness)+"mm",
-                    "StatorIronOuterRadius": str(self.StatorIronOuterRadius)+"mm",
-                    "RotorIronInnerRadius": str(self.RotorIronInnerRadius)+"mm",
-
-                    "StatorPoleTeethAdditionLength": str(self.StatorPoleWidth/4)+"mm",
-                    "StatorPoleTeethAngle":  str(self.StatorPoleTeethAngle)+"deg",
-
-                    "StatorPoleTeethStartX": str(self.StatorPoleTeethStartX)+"mm",
-
-
-                    "SusWindThickness": str(self.SusWindThickness)+"mm",
-                    "SusWindingLength": str(self.SusWindLength)+"mm",
-                    "WindingThickness": str(self.WindingThickness)+"mm",
-                    "WindingRadialLength": str(self.WindingRadialLength)+"mm",
-                    "Velocity_rpm": str(self.Velocity_rpm),
-
-                    "turnm": str(self.turnm),
-                    "turns": str(self.turns),
-                    "Im": str(self.Im)+"A",
-                    "Is_a": str(self.Is_a)+"A",
-                    "Is_b": str(self.Is_b)+"A",
-
+                variables_current = {
                     "ImA": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2)",
                     "ImB": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
                     "ImC": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
-
-                    "NumPolePairs":str(self.NumPolePairs),
-
-                    "R_phase":str(self.R_phase)+"Ohm",
                 }
 
 
             if (self.StatorPoleNumber / self.NumPolePairs == 1.5):
-                variables = {
-                    "RadialPMNumber":str(self.NumPolePairs),
-                    "StatorPoleNumber":str(self.StatorPoleNumber),
-                    "RadialPMAngle": str(self.RadialPMAngle)+"deg",
-
-                    "RotorInnerRadius": str(self.RotorInnerRadius)+"mm",
-                    "RotorCenterThickness": str(self.RotorCenterThickness)+"mm",
-                    "RotorOuterRadius": str(self.RotorOuterRadius)+"mm",
-                    "RadialPMThickness": str(self.RadialPMThickness)+"mm",
-                    "RotorPMAxialThickness": str(self.RotorPMAxialThickness)+"mm",
-
-                    "RotorIronOuterRadius": str(self.RotorIronOuterRadius)+"mm",
-                    "RotorIronThickness": str(self.RotorIronThickness)+"mm",
-                    
-                    "RotorPMAxialOuterRadius": str(self.RotorPMAxialOuterRadius)+"mm",
-                    "RotorPMInnerRadius": str(self.RotorPMInnerRadius)+"mm",
-
-                    "StatorYokeWidth": str(self.StatorYokeWidth)+"mm",
-                    "StatorInnerRadius": str(self.StatorInnerRadius)+"mm",
-                    "StatorAxialThickness": str(self.StatorAxialThickness)+"mm",
-                    "StatorOuterRadius": str(self.StatorOuterRadius)+"mm",
-
-                    "StatorPoleWidth": str(self.StatorPoleWidth)+"mm",
-                    "StatorPMOuterRadius": str(self.StatorPMOuterRadius)+"mm",
-                    "StatorPMThickness": str(self.StatorPMThickness)+"mm",
-                    "StatorIronThickness": str(self.StatorIronThickness)+"mm",
-                    "StatorIronOuterRadius": str(self.StatorIronOuterRadius)+"mm",
-                    "RotorIronInnerRadius": str(self.RotorIronInnerRadius)+"mm",
-
-                    "StatorPoleTeethAdditionLength": str(self.StatorPoleWidth/4)+"mm",
-                    "StatorPoleTeethAngle":  str(self.StatorPoleTeethAngle)+"deg",
-
-                    "StatorPoleTeethStartX": str(self.StatorPoleTeethStartX)+"mm",
-
-
-                    "SusWindThickness": str(self.SusWindThickness)+"mm",
-                    "SusWindingLength": str(self.SusWindLength)+"mm",
-                    "WindingThickness": str(self.WindingThickness)+"mm",
-                    "WindingRadialLength": str(self.WindingRadialLength)+"mm",
-                    "Velocity_rpm": str(self.Velocity_rpm),
-
-                    "turnm": str(self.turnm),
-                    "turns": str(self.turns),
-                    "Im": str(self.Im)+"A",
-                    "Is_a": str(self.Is_a)+"A",
-                    "Is_b": str(self.Is_b)+"A",
-
+                variables_current = {
                     "ImA": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2)",
                     "ImB": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2+2*pi/3)",
                     "ImC": "Im*cos(Velocity_rpm/60*2*pi*time*RadialPMNumber+pi/2-2*pi/3)",
-
-                    "NumPolePairs":str(self.NumPolePairs),
-
-                    "R_phase":str(self.R_phase)+"Ohm",
-
                 }
 
             # # Save the dictionary as a JSON file
@@ -432,6 +386,10 @@ class HBCPMWrapper:
             # Iterate through the dictionary and set each variable
             for var_name, expression in variables.items():
                 self.HBCPM.variable_manager.set_variable(var_name, expression=expression)
+
+            for var_name, expression in variables_current.items():
+                self.HBCPM.variable_manager.set_variable(var_name, expression=expression)
+
 
             # Define new materials
             # Load from JSON file
@@ -2996,7 +2954,7 @@ class HBCPMWrapper:
                     "SaveFieldsType:="	, "Every N Steps",
                     "N Steps:="		, "1",
                     "Steps From:="		, "0s",
-                    "Steps To:="		, "0.0025s",
+                    "Steps To:="		, str(60/self.Velocity_rpm/self.NumPolePairs/2)+"s",
                     "UseNonLinearIterNum:="	, False,
                     "CacheSaveKind:="	, "Count",
                     "NumberSolveSteps:="	, 1,

@@ -3552,3 +3552,55 @@ Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
         [info] Project Project_I38 Saved correctly
 -- Message Window --
 Stopping Batch Run: 11:32:01 AM  Jun 03, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:12:50 PM  Jun 05, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+[error] While parsing expression: "RadialPMEmptyAngle/2", an error was found near character 18. 'RadialPMEmptyAngle' is not a defined variable name in this context.
+
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54162. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [error] While parsing expression: "RadialPMEmptyAngle/2", an error was found near character 18. 'RadialPMEmptyAngle' is not a defined variable name in this context. 
+-- Message Window --
+Stopping Batch Run: 2:14:05 PM  Jun 05, 2025
+ 
+Ansys Electronics Desktop Version 2024.1.0, Build: 2023-11-27 22:16:18
+Location: C:\Program Files\AnsysEM\v241\Win64\ansysedt.exe
+Non Graphical Mode: No Project??
+Starting Batch Run: 2:33:24 PM  Jun 05, 2025
+Running as user : KAFU\shins
+Temp directory: C:\Users\shins\AppData\Local\Temp
+Project directory: C:\Users\shins\OneDrive\ドキュメント\Ansoft
+-- Message Window --
+      *Global - Messages
+        [info] GRPC server running on port: 54713. 
+        [info] Project Project3 has been created.
+        [info] Added design 'HBCPM' of type Maxwell 3D.
+        [info] Aedt Objects correctly read
+        [info] Project Project_X9D Saved correctly
+        [info] Modeler class has been initialized! Elapsed time: 0m 23sec
+        [info] Parsing design objects. This operation can take time
+        [info] Refreshing objects from AEDT file
+        [info] Parsing G:/he/HBCPM/8p12s_HBCPM_with_radial_PM_four_slot_half_PM_arcProject_X9D/Project_X9D.aedt.
+        [info] File G:/he/HBCPM/8p12s_HBCPM_with_radial_PM_four_slot_half_PM_arcProject_X9D/Project_X9D.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.2336258888244629
+        [info] 3D Modeler objects parsed. Elapsed time: 0m 0sec
+        [info] Project Project_X9D Saved correctly
+        [info] Project Project_X9D Saved correctly
+        [info] Parsing G:/he/HBCPM/8p12s_HBCPM_with_radial_PM_four_slot_half_PM_arcProject_X9D/Project_X9D.aedt.
+        [info] File G:/he/HBCPM/8p12s_HBCPM_with_radial_PM_four_slot_half_PM_arcProject_X9D/Project_X9D.aedt correctly loaded. Elapsed time: 0m 0sec
+        [info] aedt file load time 0.23086929321289062
+        [info] PostProcessor class has been initialized! Elapsed time: 0m 0sec
+        [info] Post class has been initialized! Elapsed time: 0m 0sec
+        [info] Project Project_X9D Saved correctly
+        [info] Project Project_X9D Saved correctly
+-- Message Window --
+Stopping Batch Run: 2:36:12 PM  Jun 05, 2025
